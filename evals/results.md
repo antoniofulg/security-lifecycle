@@ -26,6 +26,31 @@ The Skills CLI commands and copy/discovery behavior were checked using Context7'
 official vercel-labs/skills documentation and the live pinned CLI. Remote
 `owner/repo` installation follows the default branch; this PR must be merged
 before that shorthand exposes its contents. An explicit ref can be used earlier.
+Remote discovery also passed using commit
+`24c793963dc0045cfabbb8b202cceef11a34b730`. A tree URL with the slash-containing
+branch name was misparsed by Skills CLI 1.5.26; the documented preview command
+therefore uses the verified commit SHA. No branch rename or merge was needed.
+
+[CI run 34722153675](https://github.com/antoniofulg/security-lifecycle/actions/runs/34722153675)
+passed structure, all 28 tests, Skills CLI discovery and isolated installation.
+
+Independent evaluation of the installed review skill passed cases 04, 05 and 07.
+It reported High/high-confidence IDOR at decoded route.ts line 3 and service.py
+line 9, rejected the safe scoped alias change, and suppressed operator-owned URL
+SSRF and non-security MD5. It read only the installed entrypoint, evidence/report
+contracts and applicable access/input/data references. No language guide was
+needed, and no conclusion depended on an unverified framework default.
+This was static evaluation of the selected virtual files, not runtime testing.
+
+Independent evaluation of the installed implementation skill passed case 03.
+It selected identity/access, data/persistence and input/execution references,
+then checked the Express/FastAPI response APIs through Context7. Both proposals
+validated positive IDs, used owner-and-tenant-filtered lookups, returned uniform
+404 responses and restricted error logs to request ID plus error class. It did
+not load frontend or unrelated technology guides, and preserved the proxy/local
+HTTP context. Method wiring, actual parameterization and numeric storage range
+were explicitly left for consumer integration. Proposed negative and valid-use
+checks were not executed; the evaluation requested code proposals only.
 
 ## Initial bootstrap evaluation
 

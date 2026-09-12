@@ -44,6 +44,16 @@ absoluto como origem no projeto consumidor. A descoberta local é somente leitur
 npx skills add . --list
 ```
 
+Também é possível instalar este snapshot remoto verificado antes do merge:
+
+```sh
+npx skills@1.5.26 add https://github.com/antoniofulg/security-lifecycle/tree/24c793963dc0045cfabbb8b202cceef11a34b730
+```
+
+O SHA fixa essa versão; use o comando curto após merge para acompanhar a branch
+padrão. No CLI 1.5.26, URLs de branches com `/` podem ser interpretadas como
+subpastas; o SHA evita essa ambiguidade.
+
 O source canônico fica em `skills/<nome>/SKILL.md`. O CLI instala cada pasta
 completa, incluindo referências, metadados e textos legais. A raiz contém apenas
 documentação, validação e avaliações de manutenção. Exemplos de prompts:
