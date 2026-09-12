@@ -1,6 +1,6 @@
 ---
 name: security-threat-model
-description: "Use when modeling architectural threats during Design or assessing new trust boundaries during Specify. Excludes requirements-only drafting, code vulnerability review, and implementation fixes."
+description: "Model architectural threats and trust boundaries; not vulnerability review."
 ---
 
 # Security threat model

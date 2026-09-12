@@ -1,6 +1,6 @@
 ---
 name: security-implementation
-description: "Use when writing secure-by-default code or implementing requested hardening during Execute. Excludes requirements drafting, architectural threat modeling, and vulnerability audits."
+description: "Implement secure defaults and requested hardening; not audits."
 ---
 
 # Security implementation
@@ -52,11 +52,7 @@ state the uncertainty and choose a supported safe construction; do not invent AP
   [input and execution](references/input-execution.md).
 - Rendering, browser state, cross-origin messaging or client bundles:
   [frontend and browser](references/frontend-browser.md).
-- Deployment, secrets, privileges, dependencies or resource budgets:
+- Deployment, TLS/proxy/cookies, secrets, privileges, dependencies or resource budgets:
   [infrastructure and operation](references/infrastructure-operation.md).
 
 Never expose secret values in terminal output, examples, logs or reports.
-Do not flag missing TLS/HSTS automatically for local environments or proxy TLS
-termination. Set production secure cookies using verified deployment context;
-document explicit local HTTP exceptions. Confirm proxy trust and HTTPS coverage
-before recommending HSTS because its persistence can cause outages.

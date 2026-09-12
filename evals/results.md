@@ -1,5 +1,29 @@
 # Evaluation record — 2026-09-12
 
+## Context and routing refinement
+
+Compared with commit 87889db, descriptions total 294 characters instead of 744
+(60.5% fewer characters). Entry words changed: spec 255→246, threat model 340→326,
+implementation 451→399, review 568→422. The shared report contract changed from
+328 to 213 words. These are text-size measurements, not token, latency or model
+quality improvements measured in a benchmark.
+
+Full-audit-only procedure and report details now live in a conditional reference.
+TLS/cookie/HSTS instructions moved to the implementation infrastructure reference,
+whose pointer explicitly names those triggers. MCP/WebMCP references, authorization
+boundaries, source licenses and material-assumption check-in remain intact.
+
+The structural validator accepts nonblank unique descriptions up to 1,024
+characters without fixed phrases, keyword lists or an arbitrary minimum length.
+31 regression tests pass, including concise wording, whitespace-only and oversized
+description cases. This does not prove semantic routing: an independent evaluator
+received only the four name/description pairs and ten prompts, not bodies or
+expectations. All ten selections matched the separate oracle, including no skill
+for an unrelated refactor and a README typo. This is a single evaluation pass.
+
+Skills CLI 1.5.26 installed all four into a temporary project; the installed tree
+passed the structural validator. No global installation was performed.
+
 ## Surface-based guidance and skills.sh packaging update
 
 The entries below the update section describe the initial bootstrap, before the

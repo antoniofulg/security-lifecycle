@@ -39,9 +39,23 @@ class ValidatorTests(unittest.TestCase):
         self.skill.write_text(self.skill.read_text().replace("name: security-spec", "name: security-review"))
         self.reject("duplicate skill name")
 
-    def test_description_boundary(self):
-        self.skill.write_text(self.skill.read_text().replace(" Excludes ", " Includes "))
-        self.reject("Excludes boundary")
+    def set_description(self, text):
+        import json
+        lines = self.skill.read_text().splitlines()
+        lines[2] = "description: " + json.dumps(text)
+        self.skill.write_text("\n".join(lines))
+
+    def test_concise_description_without_prescribed_words(self):
+        self.set_description("Draft abuse-case contracts.")
+        self.assertEqual([], VALIDATOR.validate(self.root))
+
+    def test_blank_description(self):
+        self.set_description("   ")
+        self.reject("nonblank")
+
+    def test_oversized_description(self):
+        self.set_description("a" * 1025)
+        self.reject("at most 1024")
 
     def test_missing_reference_and_anchor(self):
         with self.skill.open("a") as file:
@@ -135,7 +149,6 @@ class ValidatorTests(unittest.TestCase):
             lines[2] = 'description: "Use when doing security work in this repository. Excludes other tasks."'
             path.write_text("\n".join(lines))
         self.reject("duplicate description")
-        self.reject("distinct phase/task trigger")
 
     def test_long_single_token(self):
         self.skill.write_text(self.skill.read_text() + "\n" + "x" * 20000)
@@ -178,6 +191,13 @@ class ValidatorTests(unittest.TestCase):
             for case in cases:
                 self.assertIn(case["skill"], VALIDATOR.NAMES)
                 self.assertTrue(case["prompt"] and case["files"] and expected[case["id"]])
+        routes = json.loads((ROOT / "evals/routing_cases.json").read_text())
+        expected = json.loads((ROOT / "evals/routing_expectations.json").read_text())
+        self.assertEqual(len(routes), len({case["id"] for case in routes}))
+        self.assertEqual({case["id"] for case in routes}, set(expected))
+        for case in routes:
+            self.assertTrue(case["prompt"])
+            self.assertIn(expected[case["id"]], VALIDATOR.NAMES | {None})
 
 
 if __name__ == "__main__":

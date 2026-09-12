@@ -66,8 +66,8 @@ python3 -m unittest discover -s evals -p 'test_*.py'
 ```
 
 The validator enforces this repository's documented single-line YAML profile,
-local Markdown links/anchors, distinct phase vocabulary plus trigger/exclusion
-syntax, and entrypoint size (150 lines, 1,800 words, 12,000 UTF-8 bytes).
+local Markdown links/anchors, nonblank unique descriptions up to 1,024 characters,
+and entrypoint size (150 lines, 1,800 words, 12,000 UTF-8 bytes).
 Description semantics and security judgment remain behavioral checks.
 Secret detection is heuristic and cannot prove the absence of arbitrary formats.
 
@@ -76,3 +76,15 @@ install into a fresh temporary project using `--agent codex --copy --yes`, then
 validate that installed `.agents` tree. No global agent directories are touched.
 The structural suite also checks portable copies and rejects links escaping a
 single skill directory, even if those links work in the source repository.
+
+## Description routing
+
+For [routing_cases.json](routing_cases.json), give an independent evaluator only
+the four names/descriptions and the prompts. Ask it to choose one skill or none
+without reading skill bodies. Compare against [routing_expectations.json](routing_expectations.json)
+afterward. The controls include unrelated refactoring and a typo fix; generic
+programming work must not activate a security skill merely because code is present.
+
+For disclosure changes, run a scoped review and a full audit separately, recording
+which files were actually read. The diff should not load full-audit instructions;
+the audit must still perform its second pass and preserve report/patch obligations.

@@ -1,6 +1,6 @@
 ---
 name: security-spec
-description: "Use when defining security requirements and negative-test contracts during Specify. Excludes architecture threat modeling, implementation changes, and code vulnerability review."
+description: "Define security requirements and negative tests during Specify; not code review."
 ---
 
 # Security spec

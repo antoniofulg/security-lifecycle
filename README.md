@@ -120,11 +120,13 @@ python3 -m unittest discover -s evals -p 'test_*.py'
 npx --yes skills@1.5.26 add . --list
 ```
 
-O validador é somente leitura. Verifica frontmatter, nomes, gatilhos/exclusões,
+O validador é somente leitura. Verifica frontmatter, nomes e descriptions,
 UI metadata, links locais e anchors, referências, marcadores de trabalho
 incompleto, capitalização, limites de 150 linhas/1.800 palavras por SKILL.md e
 padrões de secrets nas fixtures. Também limita cada entrada a 12.000 bytes e
-rejeita entradas aninhadas e descriptions duplicadas ou sem gatilho de fase.
+rejeita entradas aninhadas e descriptions vazias, duplicadas ou acima de 1.024
+caracteres. Não impõe frases, exclusões ou palavras-chave; precisão de roteamento
+é avaliada com prompts positivos e negativos, não por correspondência lexical.
 Também exige licenças/notices por skill e rejeita links que escapam da pasta
 instalável. Os testes verificam as cópias legais e as skills fora da raiz do repo.
 Usa um perfil YAML deliberadamente restrito.

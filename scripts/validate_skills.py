@@ -158,22 +158,11 @@ def validate(root):
             names.add(name)
             if name != directory.name:
                 fail(path, "name must match directory")
-            if not 40 <= len(description) <= 1024:
-                fail(path, "description must be 40–1024 characters")
-            if not description.startswith("Use when ") or " Excludes " not in description:
-                fail(path, "description needs a Use when trigger and Excludes boundary")
-            if description.casefold() in descriptions:
+            if not description.strip() or len(description) > 1024:
+                fail(path, "description must be nonblank and at most 1024 characters")
+            if description.strip().casefold() in descriptions:
                 fail(path, "duplicate description")
-            descriptions.add(description.casefold())
-            trigger = description.split(" Excludes ")[0].lower()
-            required = {
-                "security-spec": ("requirements", "specify"),
-                "security-threat-model": ("architectural threats", "design"),
-                "security-implementation": ("secure-by-default", "execute"),
-                "security-review": ("diff", "audit"),
-            }.get(directory.name, ())
-            if any(term not in trigger for term in required):
-                fail(path, "description lacks its distinct phase/task trigger")
+            descriptions.add(description.strip().casefold())
         except (ValueError, json.JSONDecodeError) as exc:
             fail(path, f"invalid frontmatter: {exc}")
         if len(text.splitlines()) > 150 or len(text.split()) > 1800 or len(text.encode()) > 12000:

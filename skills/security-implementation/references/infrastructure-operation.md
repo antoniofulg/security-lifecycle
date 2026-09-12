@@ -15,8 +15,10 @@ using package age or a historical watchlist as evidence.
 
 Disable development/debug exposure in production, keep diagnostics restricted
 and verify trusted hosts and forwarded headers against the real proxy topology.
-TLS termination may occur upstream. Keep secure-cookie/HSTS decisions aligned
-with verified HTTPS coverage and explicit local HTTP exceptions.
+Do not flag missing TLS/HSTS automatically for local environments or proxy TLS
+termination. Set production secure cookies using verified deployment context;
+document explicit local HTTP exceptions. Confirm proxy trust and HTTPS coverage
+before recommending HSTS because its persistence can cause outages.
 
 Check the resulting configuration and representative valid/denied operations.
 State unresolved deployment assumptions; do not deploy, rotate credentials or

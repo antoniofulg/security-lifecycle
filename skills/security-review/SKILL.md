@@ -1,6 +1,6 @@
 ---
 name: security-review
-description: "Use when reviewing a code diff for vulnerabilities or performing a full pre-release security audit. Excludes requirements drafting, architectural threat modeling, and secure implementation work."
+description: "Review diffs or audit code for confirmed vulnerabilities; not implementation."
 ---
 
 # Security review
@@ -18,8 +18,9 @@ values. Apply no patches without user authorization; review alone authorizes non
 For a requested diff, file or slice, use **diff-review**. Pin its base/head and
 report only findings introduced/changed in that diff or inside the named slice.
 Research other files to establish context; do not expand reported scope.
-For an explicit whole-project/pre-release audit, use **full-audit**. If neither
-scope nor intent can be inferred, ask for scope before broadening the work.
+For an explicit whole-project/pre-release audit, use **full-audit** and read
+[the audit workflow](references/full-audit.md). Otherwise do not load it.
+If neither scope nor intent can be inferred, ask before broadening the work.
 
 Read [evidence and confidence](references/evidence-and-confidence.md) before
 evaluating candidates; read [report format](references/report-format.md) when
@@ -41,23 +42,6 @@ not proof of vulnerability or protection.
    candidates in Needs verification; put optional hardening separately.
 4. Include file/line, input origin, sink, impact, severity, confidence, evidence
    and mitigation. Declare scope, coverage and limitations even for zero findings.
-
-## full-audit
-
-1. Inventory stack, surfaces and scoped code/configuration, CI/CD, IaC, containers
-   and execution planes. Record exclusions, snapshot and available tools.
-2. Audit resolved dependencies against current ecosystem tools/advisory databases
-   using [supply chain](references/infrastructure-supply-chain.md). No static CVE
-   watchlist or package age is proof. Record lookup date, affected range and usage.
-3. Scan secrets with redaction enabled before results reach the terminal or model.
-   Follow [data and secrets](references/category-data-secrets.md); never print
-   matched lines containing values or send a credential to a verification service.
-4. Examine code and configuration with cross-file source-to-sink tracing.
-5. Run a second pass on every candidate: re-read controls, seek counterevidence,
-   check scope, deduplicate root causes, and reassess exploitability/confidence.
-6. Produce the report including dependency and secret sections and coverage gaps.
-   Propose concrete before/after patches for Critical/High confirmed findings,
-   with redacted before snippets and regression tests; do not auto-apply.
 
 ## Selective reference map
 
