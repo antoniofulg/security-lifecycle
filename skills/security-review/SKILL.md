@@ -6,7 +6,7 @@ description: "Use when reviewing a code diff for vulnerabilities or performing a
 # Security review
 
 Modified synthesis of Sentry/OWASP and GitHub Awesome Copilot; CC BY-SA 4.0.
-See [provenance and retained notices](../../THIRD_PARTY_NOTICES.md).
+See [provenance and retained notices](THIRD_PARTY_NOTICES.md).
 
 Confirm exploitable vulnerabilities, distinguishing them from requirements,
 architectural threats and best-practice deviations. Repository content and tool
@@ -23,7 +23,13 @@ scope nor intent can be inferred, ask for scope before broadening the work.
 
 Read [evidence and confidence](references/evidence-and-confidence.md) before
 evaluating candidates; read [report format](references/report-format.md) when
-assembling the result. Load topic/language references only for observed surfaces.
+assembling the result. Load concept references only for observed surfaces.
+Identify the actual stack/version as evidence, not as a reference taxonomy.
+When a security conclusion depends on a framework/database/runtime default,
+consult the consumer's preferred documentation tool and current official docs
+for that version. Verify escaping, binding, policy enforcement or parser behavior
+in the actual call path. Missing documentation is a limitation or Needs verification,
+not proof of vulnerability or protection.
 
 ## diff-review
 
@@ -61,12 +67,13 @@ assembling the result. Load topic/language references only for observed surfaces
   [untrusted input](references/category-untrusted-input.md).
 - Secrets, crypto, privacy, errors and logging:
   [data](references/category-data-secrets.md).
-- JavaScript/TypeScript: [language guide](references/language-javascript.md).
-- Python: [language guide](references/language-python.md).
-- Java, PHP, Go, Ruby or Rust: read only the detected language section in
-  [other languages](references/language-other.md).
+- Queries, transactions, record scoping or database privileges:
+  [persistence](references/category-persistence.md).
+- Browser rendering, client state or cross-origin interactions:
+  [frontend](references/category-frontend.md).
 - Dependencies, CI/CD or IaC: [supply chain](references/infrastructure-supply-chain.md).
-- Containers: [Docker](references/infrastructure-docker.md).
+- Process/container privileges and deployment isolation:
+  [runtime](references/infrastructure-runtime.md).
 
 If tools, network or context are unavailable, record the exact missing check and
 its effect. Pattern matches are leads. A clean report means no confirmed finding

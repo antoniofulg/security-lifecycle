@@ -1,7 +1,7 @@
 # Dependencies, CI/CD and infrastructure
 
 Modified synthesis of Sentry/OWASP and GitHub Awesome Copilot; CC BY-SA 4.0.
-See [provenance](../../../THIRD_PARTY_NOTICES.md).
+See [provenance](../THIRD_PARTY_NOTICES.md).
 
 Use resolved manifests/lockfiles and current ecosystem advisory sources. Typical
 tools include npm audit, pip-audit, osv-scanner, govulncheck, cargo audit,

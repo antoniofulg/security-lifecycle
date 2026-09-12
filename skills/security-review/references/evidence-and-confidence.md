@@ -1,7 +1,7 @@
 # Evidence and confidence
 
 Modified synthesis of Sentry/OWASP and GitHub Awesome Copilot; CC BY-SA 4.0.
-See [provenance](../../../THIRD_PARTY_NOTICES.md).
+See [provenance](../THIRD_PARTY_NOTICES.md).
 
 A finding needs a reachable attacker capability, an input or exposed asset,
 a traced path, an unsafe sink/security decision, ineffective controls and a

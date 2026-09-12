@@ -1,0 +1,42 @@
+# License and provenance
+
+Copyright 2026 security-lifecycle contributors. Modified documentation under
+[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/legalcode);
+see [LICENSE](LICENSE). Sources and licenses checked on 2026-09-12.
+
+## Sentry and OWASP
+
+[Source snapshot](https://github.com/getsentry/skills/tree/c2f99a5b04b4cd992ec3022d7c2c3e23e938d241/skills/security-review),
+commit `c2f99a5b04b4cd992ec3022d7c2c3e23e938d241`.
+Copyright 2025 Functional Software, Inc. dba Sentry.
+Reference material derives from the [OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/)
+and [OWASP Foundation](https://owasp.org/), licensed CC BY-SA 4.0.
+
+The [specific source notice](https://github.com/getsentry/skills/blob/c2f99a5b04b4cd992ec3022d7c2c3e23e938d241/skills/security-review/LICENSE)
+is preserved [locally](licenses/Sentry-reference-NOTICE.txt). Sentry's root Apache-2.0
+license is preserved as [full terms](licenses/Apache-2.0.txt).
+Reused principles: researched versus reported scope, source-to-sink evidence,
+confidence, contextual severity and suppression of false positives.
+Topic, language and container material was consolidated into surface-based guidance.
+
+## GitHub Awesome Copilot
+
+[Source snapshot](https://github.com/github/awesome-copilot/tree/7568a482ce2df38f8965ab5336a3220db796a4ba/skills/security-review),
+commit `7568a482ce2df38f8965ab5336a3220db796a4ba`. Copyright GitHub, Inc.
+[Source MIT license](https://github.com/github/awesome-copilot/blob/7568a482ce2df38f8965ab5336a3220db796a4ba/LICENSE);
+[full permission and disclaimer](licenses/GitHub-MIT.txt).
+
+Reused principles: scope, dependencies, secrets, cross-file scan, self-verification,
+severity/confidence reporting and proposed patches. Language patterns were
+reorganized by surface; the static package watchlist was replaced by live queries.
+
+## Changes and redistribution
+
+Original condensed synthesis. Removed authenticated-path exclusions and unconditional
+flags; separated hardening/uncertainty from confirmed findings. Added safe secret
+handling and exact source-location verification. Technology defaults are verified
+on demand instead of stored as separate language/framework guides.
+
+No relevant upstream NOTICE file exists beyond the retained Sentry reference notice.
+Preserve this attribution, modification notice and bundled license texts with
+redistributed copies; ShareAlike applies to adapted review documentation.

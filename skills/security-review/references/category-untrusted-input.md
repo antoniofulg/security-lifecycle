@@ -1,7 +1,7 @@
 # Untrusted input paths
 
 Modified synthesis of Sentry/OWASP and GitHub Awesome Copilot; CC BY-SA 4.0.
-See [provenance](../../../THIRD_PARTY_NOTICES.md).
+See [provenance](../THIRD_PARTY_NOTICES.md).
 
 For SQL/command/template injection, trace untrusted data into syntax. Parameter
 binding blocks value injection but not interpolated identifiers; examine how

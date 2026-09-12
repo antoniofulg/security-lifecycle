@@ -141,6 +141,27 @@ class ValidatorTests(unittest.TestCase):
         self.skill.write_text(self.skill.read_text() + "\n" + "x" * 20000)
         self.reject("12000 bytes")
 
+    def test_skill_link_cannot_depend_on_repository_root(self):
+        self.skill.write_text(self.skill.read_text() + "\n[root](../../README.md)\n")
+        self.reject("escapes installable skill")
+
+    def test_missing_bundled_license(self):
+        (self.skill.parent / "LICENSE").unlink()
+        self.reject("missing bundled license")
+
+    def test_portable_skill_copies(self):
+        with tempfile.TemporaryDirectory() as temp:
+            isolated = Path(temp)
+            shutil.copytree(self.root / "skills", isolated / "skills")
+            self.assertEqual([], VALIDATOR.validate(isolated))
+
+    def test_bundled_legal_texts_match_sources(self):
+        apache = (ROOT / "licenses/Apache-2.0.txt").read_bytes()
+        for name in ("security-spec", "security-implementation", "security-threat-model"):
+            self.assertEqual(apache, (ROOT / "skills" / name / "LICENSE").read_bytes())
+        for source in (ROOT / "licenses").iterdir():
+            self.assertEqual(source.read_bytes(), (ROOT / "skills/security-review/licenses" / source.name).read_bytes())
+
 
 if __name__ == "__main__":
     unittest.main()

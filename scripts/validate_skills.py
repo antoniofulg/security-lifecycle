@@ -141,6 +141,9 @@ def validate(root):
         if not directory.is_dir():
             continue
         path = directory / "SKILL.md"
+        for bundled in ("LICENSE", "THIRD_PARTY_NOTICES.md"):
+            if not (directory / bundled).is_file():
+                fail(directory / bundled, "missing bundled license or provenance")
         if not path.is_file():
             fail(path, "missing SKILL.md")
             continue
@@ -229,7 +232,11 @@ def validate(root):
                 if url.scheme or url.netloc:
                     continue
                 dest = (path.parent / unquote(url.path)).resolve() if url.path else path
-                if not dest.is_relative_to(root):
+                if path.is_relative_to(skill_root) and not dest.is_relative_to(
+                    skill_root / path.relative_to(skill_root).parts[0]
+                ):
+                    fail(path, "local link escapes installable skill")
+                elif not dest.is_relative_to(root):
                     fail(path, "local link escapes repository")
                 elif not dest.exists():
                     fail(path, f"broken local link: {target}")

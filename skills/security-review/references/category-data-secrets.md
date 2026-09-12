@@ -1,7 +1,7 @@
 # Data, secrets, cryptography and output
 
 Modified synthesis of Sentry/OWASP and GitHub Awesome Copilot; CC BY-SA 4.0.
-See [provenance](../../../THIRD_PARTY_NOTICES.md).
+See [provenance](../THIRD_PARTY_NOTICES.md).
 
 Run a secret scanner only with redaction enabled and output controls verified.
 If unavailable, locally inspect metadata using a redacting wrapper before output;

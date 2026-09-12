@@ -1,7 +1,7 @@
 # Identity, authorization and business actions
 
 Modified synthesis of Sentry/OWASP and GitHub Awesome Copilot; CC BY-SA 4.0.
-See [provenance](../../../THIRD_PARTY_NOTICES.md).
+See [provenance](../THIRD_PARTY_NOTICES.md).
 
 For authentication, trace credential/session validation, expiry, issuer/audience,
 signing policy, revocation requirements and identity propagation. A decoder alone

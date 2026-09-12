@@ -1,7 +1,7 @@
 # Security review report
 
 Modified synthesis of Sentry/OWASP and GitHub Awesome Copilot; CC BY-SA 4.0.
-See [provenance](../../../THIRD_PARTY_NOTICES.md).
+See [provenance](../THIRD_PARTY_NOTICES.md).
 
 Start with mode, requested scope, snapshot/base/head and counts by severity
 (Critical/High/Medium/Low), counting only confirmed findings.

@@ -22,8 +22,8 @@ business-logic.md, cryptography.md, csrf.md, data-protection.md, deserialization
 error-handling.md, file-security.md, injection.md, logging.md, misconfiguration.md,
 modern-threats.md, ssrf.md, supply-chain.md, xss.md; languages/javascript.md,
 languages/python.md; infrastructure/docker.md. These were condensed into the
-review evidence/report contracts, three category references, three language
-references and two infrastructure references.
+review evidence/report contracts and concept references for access, data,
+untrusted input, persistence, frontend, supply chain and runtime isolation.
 
 Awesome Copilot: SKILL.md; references/language-patterns.md, report-format.md,
 secret-patterns.md, vuln-categories.md and vulnerable-packages.md. The package
@@ -31,7 +31,8 @@ watchlist was studied only to replace it with current advisory lookup instructio
 
 OpenAI best practices: SKILL.md and all ten references: general JavaScript
 frontend, React, Vue, jQuery, Next.js, Express, Django, Flask, FastAPI and Go.
-These informed the implementation-only language/framework references.
+These informed the implementation-only guidance, now consolidated into five
+surface-based references. Stack-specific APIs/defaults are verified on demand.
 OpenAI threat model: SKILL.md, references/prompt-template.md and
 references/security-controls-and-assets.md informed its two references.
 
@@ -47,6 +48,10 @@ Sentry has none; the GitHub and OpenAI NOTICE files belong to unrelated skills.
 - Separated requirements, architectural threats, implementation hardening and confirmed findings.
 - Added redaction before tool output, synthetic secret markers, and no automatic patches.
 - Restricted implementation guidance to secure construction; no vulnerability-report mode.
+- Reorganized technology guides into security concepts spanning data, backend,
+  frontend and operation, preserving contextual checks against current docs.
+- Bundled skill-specific provenance and applicable license texts inside every
+  installable skill, so installation does not depend on files outside its folder.
 
 ## Attribution and retained terms
 
@@ -67,5 +72,6 @@ license appendix verbatim (its bracketed sample copyright is license text).
 
 Each adapted Markdown file carries a modification/provenance notice. Preserve
 these notices and the applicable license files when redistributing individual skills.
+Root legal texts are canonical; bundled copies are checked by the test suite.
 See [LICENSE](LICENSE) for the file-level license boundary. Public availability
 does not remove attribution or ShareAlike obligations.

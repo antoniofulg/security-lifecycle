@@ -11,7 +11,8 @@
     "Final after response: Mermaid, asset-linked paths, existing/proposed controls, likelihood/impact reasons"
   ],
   "03-implementation": [
-    "Only JS/TS, Express, Python, FastAPI references; no unrelated framework reads",
+    "Select references by identity, input and persistence surfaces; no unrelated browser/deployment guide reads",
+    "Detect TS/Express and Python/FastAPI to verify version-dependent APIs from current docs as needed, without inventing APIs",
     "Runtime positive-int validation, authN and owner+tenant query scoping",
     "Uniform safe 404; sanitized errors and redacted logging; local/proxy TLS context",
     "Code proposal within scope, no vulnerability audit/finding cards"

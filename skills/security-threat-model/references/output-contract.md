@@ -1,7 +1,7 @@
 # Threat model output
 
 Modified synthesis of OpenAI security-threat-model; Apache-2.0.
-See [provenance](../../../THIRD_PARTY_NOTICES.md).
+See [provenance](../THIRD_PARTY_NOTICES.md).
 
 Deliver Markdown with:
 

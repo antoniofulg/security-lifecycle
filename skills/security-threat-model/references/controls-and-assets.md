@@ -1,7 +1,7 @@
 # Assets, controls and prioritization
 
 Modified synthesis of OpenAI security-threat-model; Apache-2.0.
-See [provenance](../../../THIRD_PARTY_NOTICES.md).
+See [provenance](../THIRD_PARTY_NOTICES.md).
 
 Model assets concretely: tenant documents, payment ledger integrity, signing
 keys, deploy credentials, compute budget, audit trail or uploaded artifacts.

@@ -6,7 +6,7 @@ description: "Use when modeling architectural threats during Design or assessing
 # Security threat model
 
 Modified synthesis of OpenAI security-threat-model; Apache-2.0.
-See [provenance](../../THIRD_PARTY_NOTICES.md).
+See [provenance](THIRD_PARTY_NOTICES.md).
 
 Produce a concise architectural threat model grounded in repository evidence.
 Apply during Design, or Specify for new boundaries, authentication/authorization,

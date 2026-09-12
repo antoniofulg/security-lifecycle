@@ -1,0 +1,27 @@
+name: Validate skills
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Validate structure and regression cases
+        run: |
+          python3 scripts/validate_skills.py
+          python3 -m unittest discover -s evals -p 'test_*.py'
+      - name: Discover all skills using the Skills CLI
+        run: npx --yes skills@1.5.26 add . --list
+      - name: Verify an isolated project installation
+        run: |
+          install_project="$(mktemp -d)"
+          cd "$install_project"
+          npx --yes skills@1.5.26 add "$GITHUB_WORKSPACE" --skill '*' --agent codex --copy --yes
+          python3 "$GITHUB_WORKSPACE/scripts/validate_skills.py" "$install_project/.agents"

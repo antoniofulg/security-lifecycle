@@ -1,5 +1,34 @@
 # Evaluation record — 2026-09-12
 
+## Surface-based guidance and skills.sh packaging update
+
+The entries below the update section describe the initial bootstrap, before the
+technology guides were consolidated. They remain historical evidence; they do
+not imply the removed framework reference files still exist.
+
+Current structural checks: `python3 scripts/validate_skills.py` and 28 unittest
+cases pass. Four new checks cover skill-local link boundaries, missing bundled
+licenses, portable skill copies and byte-identical upstream legal texts.
+
+Skills CLI 1.5.26 found exactly four skills with `add . --list`. An actual
+project-scoped installation using `add <checkout> --skill '*' --agent codex --copy
+--yes` copied all four into a fresh temporary project's `.agents/skills`.
+The validator passed against that installed tree. Every bundled file matched its
+source bytes: implementation 9 files, review 16, spec 6 and threat model 6.
+No global skill installation or plugin channel was added.
+
+The packaging pattern was compared with adaptive-guidelines: public repository,
+canonical `skills/<name>/SKILL.md`, README badge/install commands and CI discovery.
+Unlike a root-only license layout, this collection bundles each skill's required
+legal material and rejects links depending on the source repository root.
+
+The Skills CLI commands and copy/discovery behavior were checked using Context7's
+official vercel-labs/skills documentation and the live pinned CLI. Remote
+`owner/repo` installation follows the default branch; this PR must be merged
+before that shorthand exposes its contents. An explicit ref can be used earlier.
+
+## Initial bootstrap evaluation
+
 Harness: independent read-only explorer agents, fresh task context, selected
 prompts/virtual files and skill references. Expectations were withheld from the
 evaluators. No fixture was executed, no vulnerable dependency installed and no
