@@ -61,6 +61,9 @@ not proof of vulnerability or protection.
 
 ## Selective reference map
 
+- Exposing or consuming agent tools, including MCP or WebMCP:
+  [agents and tools](references/agent-tools.md); select the evidenced role/protocol
+  and distinguish normative requirements from application/browser assumptions.
 - Identity, API/object access, CSRF and business rules:
   [access](references/category-access.md).
 - Injection, XSS, SSRF, XML/deserialization and files:

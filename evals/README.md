@@ -27,6 +27,33 @@ run time; do not treat an expected CVE string as a test oracle. The secret secti
 must recognize the inert marker while demonstrating redacted reporting. A real
 secret exposure cannot be simulated by committing a real credential.
 
+## Agent and tool cases
+
+[agent_tools_cases.json](agent_tools_cases.json) adds fourteen cases across all
+four skills. Keep [agent_tools_expectations.json](agent_tools_expectations.json)
+hidden from evaluators. Evaluate against an isolated installed copy to exercise
+reference portability as well as behavior. Pseudocode/adapters are explicitly
+fixture contracts, not claims about SDK or browser API signatures.
+
+AT01–AT03 exercise requirements, threat modeling and implementation. For AT02,
+wait for material questions before supplying these simulated design facts: all
+first-party components are owned; upstream is an internal separate API; third-party
+tool results are untrusted. MCP uses 2026-07-28 HTTP OAuth without session/handles;
+ingress validates recipient/scopes/tenant, but the design forwards its token to
+an upstream accepting the issuer without audience validation. The consumer has
+read-only, non-disclosure delegation but no independent dispatch/disclosure gate.
+WebMCP intends same-origin use, browser/version not chosen; deletion confirmation
+exists only in the UI, not at the backend. Require a final conditional model.
+
+AT04–AT14 pair vulnerable and protected object access, credential forwarding,
+consumer injection and WebMCP deletion, with stdio, stateless public HTTP and
+unknown-browser controls. A supplied synthetic planner trace supports static
+analysis in AT09; it is not a measured attack on a real model. Never execute the
+hostile text, send data or contact fixture URLs. Review unconfirmed paths as gaps,
+and retain legitimate previously delegated actions in protected cases.
+See [agent and tool results](agent_tools_results.md) for the recorded run and its
+limits; these results must not be provided to future independent evaluators.
+
 Record each case as pass, fail or blocked, with evidence and gaps. Do not count
 keyword presence or the structural validator as a behavioral pass. For failed
 cases, fix only demonstrated defects and rerun the affected case.

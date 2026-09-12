@@ -13,6 +13,10 @@ Apply during Design, or Specify for new boundaries, authentication/authorization
 payments, sensitive data, uploads, code execution or significant integrations.
 This produces threats, not confirmed code vulnerabilities.
 
+For systems exposing or consuming agent tools, including MCP or WebMCP, read
+[agent and tool boundaries](references/agent-tools.md) and use only applicable
+provider/consumer and protocol sections. Keep the material-assumption check-in.
+
 1. Establish scope, deployment evidence and missing context. Map components,
    entrypoints and data flows with file/line evidence. Separate runtime,
    CI/build/dev and tests; do not present fixtures as production components.

@@ -44,16 +44,6 @@ absoluto como origem no projeto consumidor. A descoberta local é somente leitur
 npx skills add . --list
 ```
 
-Também é possível instalar este snapshot remoto verificado antes do merge:
-
-```sh
-npx skills@1.5.26 add https://github.com/antoniofulg/security-lifecycle/tree/24c793963dc0045cfabbb8b202cceef11a34b730
-```
-
-O SHA fixa essa versão; use o comando curto após merge para acompanhar a branch
-padrão. No CLI 1.5.26, URLs de branches com `/` podem ser interpretadas como
-subpastas; o SHA evita essa ambiguidade.
-
 O source canônico fica em `skills/<nome>/SKILL.md`. O CLI instala cada pasta
 completa, incluindo referências, metadados e textos legais. A raiz contém apenas
 documentação, validação e avaliações de manutenção. Exemplos de prompts:
@@ -77,7 +67,8 @@ estes exemplos não pedem instalação global.
 ## Referências por superfície
 
 Implementação organiza os conceitos em identidade/acesso, dados/persistência,
-entrada/execução, frontend/navegador e infraestrutura/operação. Review usa a mesma
+entrada/execução, frontend/navegador, infraestrutura/operação e agentes/ferramentas.
+Review usa a mesma
 abordagem de superfícies, com critérios de evidência e confiança próprios.
 Os conceitos se aplicam a bancos de dados, backend e frontend sem uma lista
 fechada de linguagens ou frameworks suportados.
@@ -87,6 +78,37 @@ funcionam. Quando a conclusão depende de escaping, binding, middleware, isolame
 transacional ou outro comportamento específico, consulte documentação oficial
 atual pelo mecanismo disponível no projeto consumidor. Sem essa evidência,
 declare a limitação; não invente uma API ou assuma proteção pelo nome da tecnologia.
+
+## Agentes, MCP e WebMCP
+
+As quatro skills incluem uma referência condicional de agentes e ferramentas,
+com seções próprias para consumidor/provedor e MCP/WebMCP. Não há uma quinta
+skill nem necessidade de carregar protocolos ausentes do projeto.
+
+O núcleo trata de autoridade delegada, autorização de ações e objetos, conteúdo
+de tools não confiável, divulgação de dados e confirmação vinculada à operação.
+Metadados e hints não substituem controles; prompts hostis sem caminho demonstrado
+não são automaticamente vulnerabilidades confirmadas.
+
+- **MCP:** distingue HTTP de stdio; valida destinatário/scopes de credenciais,
+  evita token passthrough, examina consentimento de proxies, handles de estado,
+  descoberta/redirects e privilégios de processos locais. A versão 2026-07-28 é
+  stateless; não exige sessões de protocolo ou OAuth em toda ferramenta pública.
+- **WebMCP:** examina origem/frame, contexto autenticado, paridade de controles
+  entre UI/tool/backend, dados solicitados em excesso e ações sensíveis. Confirma
+  o navegador/versão; não presume que APIs propostas ou hints imponham consentimento.
+
+Base: [segurança MCP](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/aa8ce049f089f92618340190d4ece141f663310d/docs/docs/2026-07-28/tutorials/security/security_best_practices.mdx)
+e [segurança/privacidade WebMCP](https://github.com/webmachinelearning/webmcp/blob/97da8f515427594c856307e3476c0a0db9698fbb/security-privacy-questionnaire.md),
+com SHAs e licenças registrados. Consulte documentação atual para a versão real
+do consumidor; cobertura conceitual não é certificação do protocolo/navegador.
+
+```text
+Use $security-spec para definir autorização e consentimento das nossas tools MCP.
+Use $security-threat-model no consumidor agente e nas tools WebMCP deste design.
+Use $security-implementation para proteger despacho, credenciais e confirmação.
+Use $security-review em diff-review neste handler MCP e sua política cross-file.
+```
 
 ## Validação
 
@@ -110,6 +132,8 @@ Não prova ausência de todos os formatos de segredo nem qualidade semântica.
 
 As [avaliações comportamentais](evals/README.md) separam prompts e expectativas.
 O [registro desta execução](evals/results.md) reúne evidências e limitações.
+O [registro de agentes e ferramentas](evals/agent_tools_results.md) documenta
+as avaliações específicas de MCP/WebMCP e as verificações das fontes.
 Fixtures são virtuais e não executáveis; credenciais são marcadores inertes.
 Review não aplica patches automaticamente, não testa credenciais reais e não
 instala dependências vulneráveis. Auditoria de dependências requer ferramentas
@@ -118,8 +142,10 @@ ou bases atuais e registra limitações quando indisponíveis.
 ## Licenças
 
 [LICENSE](LICENSE) delimita a coleção: Markdown de security-review sob CC BY-SA
-4.0; demais contribuições sob Apache-2.0, preservando notices MIT/Apache upstream.
+4.0; demais contribuições sob Apache-2.0, preservando termos upstream.
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) registra SHAs, data, fontes,
-mudanças e atribuição Sentry/OWASP, GitHub e OpenAI. A intenção inicial de uso
+mudanças e atribuição Sentry/OWASP, GitHub, OpenAI, MCP e WebMCP/W3C.
+As novas referências preservam os termos CC-BY/MIT/Apache do MCP e W3C Software
+and Document License; cópias acompanham cada skill instalada. A intenção inicial de uso
 privado não altera as obrigações de redistribuição pública. Não há dependência
 de Vercel nem necessidade de ferramentas de deploy para usar estas skills.

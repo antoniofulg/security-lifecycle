@@ -12,8 +12,9 @@ evaluation fixtures were newly written. No upstream skill is vendored wholesale.
 | [OpenAI security-best-practices](https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-best-practices) | `49f948faa9258a0c61caceaf225e179651397431` | [Local Apache-2.0](https://github.com/openai/skills/blob/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-best-practices/LICENSE.txt) | Only security-implementation: stack selection, secure defaults, passive high-impact warnings, documented exceptions, isolated fixes and regression checks; React, Vue, Next.js, Express, jQuery, Django, Flask, FastAPI, Go; TLS/cookie context. |
 | [OpenAI security-threat-model](https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-threat-model) | `49f948faa9258a0c61caceaf225e179651397431` | [Local Apache-2.0](https://github.com/openai/skills/blob/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-threat-model/LICENSE.txt) | Only security-threat-model: repository evidence, separate execution planes, assets, boundaries, capabilities, abuse paths, prioritization, material-assumption check-in and Mermaid. |
 
-`security-spec`, structural validator and fixtures are original work based on the
-requested behavioral contract. They do not combine Sentry and Copilot workflows.
+The original security-spec core, structural validator and fixtures were written
+for the requested contract. The new agent-tools reference also uses the official
+protocol sources below. They do not combine Sentry and Copilot workflows.
 
 ## Studied files at the pinned commits
 
@@ -40,6 +41,42 @@ Recursive source-tree checks found no relevant NOTICE file for these four skills
 Sentry has none; the GitHub and OpenAI NOTICE files belong to unrelated skills.
 
 ## Changes from upstream
+
+### Agent and tool security sources — checked 2026-09-12
+
+- [MCP snapshot](https://github.com/modelcontextprotocol/modelcontextprotocol/tree/aa8ce049f089f92618340190d4ece141f663310d),
+  SHA `aa8ce049f089f92618340190d4ece141f663310d`: security best practices for
+  protocol version 2026-07-28 plus authorization, transport and tools sections.
+  Reused in all four agent-tools references: caller/recipient binding, scoped
+  authorization, token forwarding restrictions, untrusted tool content, sessions,
+  local process and network boundaries. The [source license](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/aa8ce049f089f92618340190d4ece141f663310d/LICENSE)
+  explicitly describes a licensing transition: documentation excluding specs is
+  CC-BY-4.0; new specification/code contributions are Apache-2.0; unconsented older
+  contributions retain MIT. Preserve [the entire source notice](licenses/MCP-LICENSE.txt),
+  not a blanket assertion that the whole source is MIT or Apache.
+- [WebMCP snapshot](https://github.com/webmachinelearning/webmcp/tree/97da8f515427594c856307e3476c0a0db9698fbb),
+  SHA `97da8f515427594c856307e3476c0a0db9698fbb`: security-privacy-questionnaire.md
+  and index.bs security/privacy section. Reused in all four agent-tools references:
+  tool metadata/output injection, over-parameterization, session context,
+  application/backend parity, origin exposure and consequential actions.
+  [Source license](https://github.com/webmachinelearning/webmcp/blob/97da8f515427594c856307e3476c0a0db9698fbb/LICENSE.md):
+  W3C Software and Document License (2023); retain [source declaration](licenses/WebMCP-LICENSE.txt)
+  and [full terms](licenses/W3C-SOFTWARE-DOCUMENT.txt).
+
+Original, phase-specific rewrites; no source implementation or attack payload was
+copied. WebMCP's non-normative security discussion and unfinished proposals are
+not represented as shipped browser guarantees. Source trees have no separate
+NOTICE file. These new references preserve the collection's existing license
+boundaries while retaining underlying CC-BY/MIT/Apache/W3C terms and attribution.
+
+This documentation includes material derived from WebMCP Security and Privacy,
+Copyright © 2026 World Wide Web Consortium and WebMCP Contributors. All Rights
+Reserved. Distributed under the W3C Software and Document License, WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+A PARTICULAR PURPOSE. Changes: condensed, reorganized by lifecycle phase and
+distinguished draft recommendations from implementation evidence.
+
+### Earlier adaptations
 
 - Removed the authenticated-path exclusion: authenticated attackers can exploit IDOR.
 - Replaced unconditional pattern flags with contextual exploitability checks.

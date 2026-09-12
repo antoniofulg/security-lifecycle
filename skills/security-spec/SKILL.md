@@ -9,6 +9,10 @@ Turn feature intent into observable security requirements and negative tests.
 Stay at Specify/test-contract level; do not search code for vulnerabilities or
 choose libraries when the requirement only needs to state an observable outcome.
 
+When the feature exposes or consumes agent tools, including MCP or WebMCP, read
+[agent and tool requirements](references/agent-tools.md). Select only the relevant
+provider/consumer and protocol sections; retain the normal output contract.
+
 1. Identify introduced or changed surfaces from the requested feature. Record
    assets, actors, sensitive data, untrusted inputs, external integrations and
    trust boundaries. Label unknowns; do not invent deployment facts.

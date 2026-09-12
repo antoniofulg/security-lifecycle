@@ -41,6 +41,9 @@ state the uncertainty and choose a supported safe construction; do not invent AP
 
 ## Selective references
 
+- Exposing or consuming agent tools, including MCP or WebMCP:
+  [agents and tools](references/agent-tools.md); use only applicable role/protocol
+  sections and follow its links to current official documentation when needed.
 - Login, sessions, protected actions or tenant access:
   [identity and access](references/identity-access.md).
 - Queries, records, transactions, private caches or sensitive output:

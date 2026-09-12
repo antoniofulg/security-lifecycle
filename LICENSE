@@ -13,7 +13,9 @@ Copyright 2026 security-lifecycle contributors.
    Licensed under that license; distributed on an AS IS BASIS, WITHOUT
    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-3. licenses/* contain verbatim third-party legal texts under their own terms.
-   Upstream MIT and Apache notices are retained; this file does not replace them.
+3. Root and skill-local licenses/* contain third-party legal texts under their own
+   terms. Upstream MIT, Apache, CC-BY-4.0 and W3C Software and Document notices
+   are retained; this file does not replace or remove those underlying terms.
 
-No trademark rights or endorsement by Sentry, OWASP, GitHub or OpenAI are implied.
+No trademark rights or endorsement by Sentry, OWASP, GitHub, OpenAI, MCP or W3C
+are implied.

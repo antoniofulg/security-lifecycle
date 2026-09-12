@@ -161,6 +161,23 @@ class ValidatorTests(unittest.TestCase):
             self.assertEqual(apache, (ROOT / "skills" / name / "LICENSE").read_bytes())
         for source in (ROOT / "licenses").iterdir():
             self.assertEqual(source.read_bytes(), (ROOT / "skills/security-review/licenses" / source.name).read_bytes())
+        for name in ("security-spec", "security-implementation", "security-threat-model"):
+            for filename in ("MCP-LICENSE.txt", "WebMCP-LICENSE.txt", "W3C-SOFTWARE-DOCUMENT.txt"):
+                self.assertEqual((ROOT / "licenses" / filename).read_bytes(),
+                                 (ROOT / "skills" / name / "licenses" / filename).read_bytes())
+
+    def test_evaluation_inputs_match_oracles(self):
+        import json
+        for inputs, oracle in (("cases.json", "expectations.json"),
+                               ("agent_tools_cases.json", "agent_tools_expectations.json")):
+            cases = json.loads((ROOT / "evals" / inputs).read_text())
+            expected = json.loads((ROOT / "evals" / oracle).read_text())
+            ids = [case["id"] for case in cases]
+            self.assertEqual(len(ids), len(set(ids)))
+            self.assertEqual(set(ids), set(expected))
+            for case in cases:
+                self.assertIn(case["skill"], VALIDATOR.NAMES)
+                self.assertTrue(case["prompt"] and case["files"] and expected[case["id"]])
 
 
 if __name__ == "__main__":
