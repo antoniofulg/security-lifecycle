@@ -1,0 +1,4 @@
+interface:
+  display_name: "Security Review"
+  short_description: "Revisão contextual de vulnerabilidades"
+  default_prompt: "Use $security-review para revisar este diff e confirmar vulnerabilidades."

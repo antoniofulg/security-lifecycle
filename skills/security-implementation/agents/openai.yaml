@@ -1,0 +1,4 @@
+interface:
+  display_name: "Security Implementation"
+  short_description: "Implementação segura por superfície"
+  default_prompt: "Use $security-implementation para implementar esta mudança com defaults seguros."

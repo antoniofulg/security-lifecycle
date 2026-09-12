@@ -1,0 +1,23 @@
+# Infrastructure and operation
+
+Modified synthesis of OpenAI security-best-practices; Apache-2.0.
+See [provenance](../THIRD_PARTY_NOTICES.md).
+
+Keep credentials in the authorized secret-delivery mechanism and restrict their
+readers. Exclude them from images, build artifacts, public configuration and logs.
+Use least-privilege service identities, controlled writable paths and bounded
+CPU, memory, body, connection and storage consumption at relevant boundaries.
+
+Separate runtime from build/dev/test privileges. Avoid exposing deploy credentials
+to untrusted build inputs; preserve dependency integrity checks. When changing a
+dependency, verify supported APIs and current advisory information instead of
+using package age or a historical watchlist as evidence.
+
+Disable development/debug exposure in production, keep diagnostics restricted
+and verify trusted hosts and forwarded headers against the real proxy topology.
+TLS termination may occur upstream. Keep secure-cookie/HSTS decisions aligned
+with verified HTTPS coverage and explicit local HTTP exceptions.
+
+Check the resulting configuration and representative valid/denied operations.
+State unresolved deployment assumptions; do not deploy, rotate credentials or
+apply unrelated hardening merely because implementation work is authorized.

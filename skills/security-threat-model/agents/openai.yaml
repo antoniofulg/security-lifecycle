@@ -1,0 +1,4 @@
+interface:
+  display_name: "Security Threat Model"
+  short_description: "Ameaças arquiteturais baseadas em evidências"
+  default_prompt: "Use $security-threat-model para modelar as ameaças deste sistema."
