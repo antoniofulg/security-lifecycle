@@ -112,8 +112,9 @@ credential tested. Results reflect one pass, not statistical reliability.
   implementation 49/318; review 73/486 at initial evaluation.
 
 Demonstrated validator defect: case-insensitive unfinished-marker detection
-mistook the Portuguese word “todo” for a scaffold marker. Restricted that marker
-to uppercase and added a passing Portuguese control plus a failing marker test.
+mistook ordinary prose for a scaffold marker. Restricted that marker to uppercase.
+The regression now uses mixed-case English Todo prose as the passing control,
+alongside a failing uppercase marker test.
 Tests also cover malformed metadata, mismatched/duplicate names, missing links,
 anchors, bare reference pointers, capitalization, size, UI invocation and secret
 redaction. The secret rules are heuristic; semantic descriptions require review.
