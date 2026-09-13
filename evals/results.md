@@ -24,6 +24,18 @@ for an unrelated refactor and a README typo. This is a single evaluation pass.
 Skills CLI 1.5.26 installed all four into a temporary project; the installed tree
 passed the structural validator. No global installation was performed.
 
+An independent reviewer then performed the protected diff (case 05) and full audit
+(case 06) using installed files. The diff loaded evidence/report/access/persistence
+guidance and did not load full-audit.md; it correctly found the scoped method
+aliases safe. The audit loaded full-audit.md and the relevant surface references,
+reported SQLi/traversal plus the independent private-search access gap, provided
+proposed High patches with valid/negative checks, and separated Dependencies,
+Secrets, uncertainties and coverage. The inert marker was not reported as a live
+credential. Network access was intentionally unavailable for this evaluation:
+dependency advisories remained unverified, rather than being declared clean or
+reported from a static watchlist. No patches or fixtures were executed. This
+confirms routing/report behavior for these cases, not exhaustive audit accuracy.
+
 ## Surface-based guidance and skills.sh packaging update
 
 The entries below the update section describe the initial bootstrap, before the
