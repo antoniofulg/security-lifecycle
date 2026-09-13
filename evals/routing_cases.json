@@ -1,0 +1,42 @@
+[
+  {
+    "id": "R01",
+    "prompt": "Defina requisitos de segurança e critérios de aceitação para um download privado por ID."
+  },
+  {
+    "id": "R02",
+    "prompt": "Antes de implementar, derive abuse cases e testes negativos para compartilhamento de documentos."
+  },
+  {
+    "id": "R03",
+    "prompt": "Modele as ameaças deste design de webhook com arquivo e callback externo."
+  },
+  {
+    "id": "R04",
+    "prompt": "Mapeie ativos, fronteiras de confiança e caminhos de abuso entre nosso agente e servidores MCP."
+  },
+  {
+    "id": "R05",
+    "prompt": "Implemente este endpoint com defaults seguros, validação e autorização por tenant."
+  },
+  {
+    "id": "R06",
+    "prompt": "Aplique o hardening solicitado de cookies e erros seguros, respeitando nosso proxy TLS."
+  },
+  {
+    "id": "R07",
+    "prompt": "Revise este diff e reporte somente vulnerabilidades confirmadas com evidência."
+  },
+  {
+    "id": "R08",
+    "prompt": "Faça uma auditoria de segurança pré-release incluindo dependências, secrets e infraestrutura."
+  },
+  {
+    "id": "R09",
+    "prompt": "Renomeie esta função e seus callers, preservando o comportamento."
+  },
+  {
+    "id": "R10",
+    "prompt": "Corrija o erro de digitação no título do README."
+  }
+]

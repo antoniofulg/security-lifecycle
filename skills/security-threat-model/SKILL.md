@@ -1,6 +1,6 @@
 ---
 name: security-threat-model
-description: "Use when modeling architectural threats during Design or assessing new trust boundaries during Specify. Excludes requirements-only drafting, code vulnerability review, and implementation fixes."
+description: "Model architectural threats and trust boundaries; not vulnerability review."
 ---
 
 # Security threat model
@@ -12,6 +12,10 @@ Produce a concise architectural threat model grounded in repository evidence.
 Apply during Design, or Specify for new boundaries, authentication/authorization,
 payments, sensitive data, uploads, code execution or significant integrations.
 This produces threats, not confirmed code vulnerabilities.
+
+For systems exposing or consuming agent tools, including MCP or WebMCP, read
+[agent and tool boundaries](references/agent-tools.md) and use only applicable
+provider/consumer and protocol sections. Keep the material-assumption check-in.
 
 1. Establish scope, deployment evidence and missing context. Map components,
    entrypoints and data flows with file/line evidence. Separate runtime,

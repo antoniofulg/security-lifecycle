@@ -27,6 +27,33 @@ run time; do not treat an expected CVE string as a test oracle. The secret secti
 must recognize the inert marker while demonstrating redacted reporting. A real
 secret exposure cannot be simulated by committing a real credential.
 
+## Agent and tool cases
+
+[agent_tools_cases.json](agent_tools_cases.json) adds fourteen cases across all
+four skills. Keep [agent_tools_expectations.json](agent_tools_expectations.json)
+hidden from evaluators. Evaluate against an isolated installed copy to exercise
+reference portability as well as behavior. Pseudocode/adapters are explicitly
+fixture contracts, not claims about SDK or browser API signatures.
+
+AT01–AT03 exercise requirements, threat modeling and implementation. For AT02,
+wait for material questions before supplying these simulated design facts: all
+first-party components are owned; upstream is an internal separate API; third-party
+tool results are untrusted. MCP uses 2026-07-28 HTTP OAuth without session/handles;
+ingress validates recipient/scopes/tenant, but the design forwards its token to
+an upstream accepting the issuer without audience validation. The consumer has
+read-only, non-disclosure delegation but no independent dispatch/disclosure gate.
+WebMCP intends same-origin use, browser/version not chosen; deletion confirmation
+exists only in the UI, not at the backend. Require a final conditional model.
+
+AT04–AT14 pair vulnerable and protected object access, credential forwarding,
+consumer injection and WebMCP deletion, with stdio, stateless public HTTP and
+unknown-browser controls. A supplied synthetic planner trace supports static
+analysis in AT09; it is not a measured attack on a real model. Never execute the
+hostile text, send data or contact fixture URLs. Review unconfirmed paths as gaps,
+and retain legitimate previously delegated actions in protected cases.
+See [agent and tool results](agent_tools_results.md) for the recorded run and its
+limits; these results must not be provided to future independent evaluators.
+
 Record each case as pass, fail or blocked, with evidence and gaps. Do not count
 keyword presence or the structural validator as a behavioral pass. For failed
 cases, fix only demonstrated defects and rerun the affected case.
@@ -39,8 +66,8 @@ python3 -m unittest discover -s evals -p 'test_*.py'
 ```
 
 The validator enforces this repository's documented single-line YAML profile,
-local Markdown links/anchors, distinct phase vocabulary plus trigger/exclusion
-syntax, and entrypoint size (150 lines, 1,800 words, 12,000 UTF-8 bytes).
+local Markdown links/anchors, nonblank unique descriptions up to 1,024 characters,
+and entrypoint size (150 lines, 1,800 words, 12,000 UTF-8 bytes).
 Description semantics and security judgment remain behavioral checks.
 Secret detection is heuristic and cannot prove the absence of arbitrary formats.
 
@@ -49,3 +76,15 @@ install into a fresh temporary project using `--agent codex --copy --yes`, then
 validate that installed `.agents` tree. No global agent directories are touched.
 The structural suite also checks portable copies and rejects links escaping a
 single skill directory, even if those links work in the source repository.
+
+## Description routing
+
+For [routing_cases.json](routing_cases.json), give an independent evaluator only
+the four names/descriptions and the prompts. Ask it to choose one skill or none
+without reading skill bodies. Compare against [routing_expectations.json](routing_expectations.json)
+afterward. The controls include unrelated refactoring and a typo fix; generic
+programming work must not activate a security skill merely because code is present.
+
+For disclosure changes, run a scoped review and a full audit separately, recording
+which files were actually read. The diff should not load full-audit instructions;
+the audit must still perform its second pass and preserve report/patch obligations.

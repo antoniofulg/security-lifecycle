@@ -1,0 +1,12 @@
+{
+  "R01": "security-spec",
+  "R02": "security-spec",
+  "R03": "security-threat-model",
+  "R04": "security-threat-model",
+  "R05": "security-implementation",
+  "R06": "security-implementation",
+  "R07": "security-review",
+  "R08": "security-review",
+  "R09": null,
+  "R10": null
+}
