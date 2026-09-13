@@ -1,4 +1,4 @@
 interface:
   display_name: "Security Spec"
-  short_description: "Requisitos de segurança e testes negativos"
-  default_prompt: "Use $security-spec para definir o contrato de segurança desta funcionalidade."
+  short_description: "Security requirements and negative tests"
+  default_prompt: "Use $security-spec to define this feature's security contract."

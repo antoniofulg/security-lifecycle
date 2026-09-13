@@ -77,8 +77,8 @@ class ValidatorTests(unittest.TestCase):
         self.skill.write_text(self.skill.read_text() + "\n" + "TO" + "DO" + "\n")
         self.reject("placeholder")
 
-    def test_portuguese_todo_is_not_placeholder(self):
-        self.skill.write_text(self.skill.read_text() + "\nTodo o fluxo e todo contexto.\n")
+    def test_mixed_case_marker_in_prose_is_not_placeholder(self):
+        self.skill.write_text(self.skill.read_text() + "\nTodo entries and todo items are tracked separately.\n")
         self.assertEqual([], VALIDATOR.validate(self.root))
 
     def test_env_fixture_secret(self):

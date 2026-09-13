@@ -1,5 +1,10 @@
 # Evaluation record — 2026-09-12
 
+Language update, 2026-09-13: repository prose, UI metadata and evaluation prompts
+were translated into English. Earlier entries below describe the original prompt
+language and source snapshots. Fixture IDs, file names, code and expectations were
+preserved; structural validation and 31 regression tests passed after translation.
+
 ## Context and routing refinement
 
 Compared with commit 87889db, descriptions total 294 characters instead of 744

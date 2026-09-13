@@ -2,6 +2,7 @@
 
 Keep four independent skills under `skills/`. Their consumer chooses the phase;
 do not add a dispatcher or a spec-driven workflow.
+Write repository documentation, skill metadata, prompts and fixture prose in English.
 
 Before adapting upstream material, pin its commit and check the applicable local
 license. Update [provenance](THIRD_PARTY_NOTICES.md) and preserve notices.

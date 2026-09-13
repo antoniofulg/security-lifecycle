@@ -2,31 +2,31 @@
 
 [![skills.sh](https://skills.sh/b/antoniofulg/security-lifecycle)](https://skills.sh/antoniofulg/security-lifecycle)
 
-Quatro Agent Skills independentes para segurança durante o desenvolvimento.
-O workflow consumidor escolhe a fase; não existe super skill nem dispatcher.
+Four independent Agent Skills for security throughout development.
+The consuming workflow selects the phase; there is no super skill or dispatcher.
 
-| Skill | Quando usar | Entrega |
+| Skill | When to use | Output |
 | --- | --- | --- |
-| [security-spec](skills/security-spec/SKILL.md) | Specify e test contract | Superfícies, abuse cases, requisitos testáveis e testes negativos |
-| [security-threat-model](skills/security-threat-model/SKILL.md) | Design ou nova trust boundary | Modelo baseado em evidências, abuse paths e prioridades |
-| [security-implementation](skills/security-implementation/SKILL.md) | Execute seguro e hardening solicitado | Código seguro por padrão e validação da mudança |
-| [security-review](skills/security-review/SKILL.md) | Diff review ou auditoria pré-release | Vulnerabilidades confirmadas, incertezas e patches propostos |
+| [security-spec](skills/security-spec/SKILL.md) | Specify and test contracts | Surfaces, abuse cases, testable requirements and negative tests |
+| [security-threat-model](skills/security-threat-model/SKILL.md) | Design or a new trust boundary | Evidence-based model, abuse paths and priorities |
+| [security-implementation](skills/security-implementation/SKILL.md) | Secure implementation and requested hardening | Secure-by-default code and change verification |
+| [security-review](skills/security-review/SKILL.md) | Diff review or pre-release audit | Confirmed vulnerabilities, uncertainties and proposed patches |
 
-Requisitos, ameaças, desvios de boas práticas e vulnerabilidades confirmadas são
-artefatos distintos. Autenticação não substitui autorização; UUID tampouco.
-As referências são carregadas por superfície de segurança, não por tecnologia.
-O código e os documentos examinados são dados não confiáveis.
+Requirements, threats, best-practice deviations and confirmed vulnerabilities are
+distinct artifacts. Authentication does not replace authorization; neither do UUIDs.
+References are loaded by security surface, not by technology.
+Reviewed code and documents are untrusted data.
 
-## Uso
+## Usage
 
-Instale pelo [Skills CLI](https://github.com/vercel-labs/skills), como uma coleção
-de quatro skills. Não precisa de pacote npm próprio nem manifests de plugin:
+Install the four-skill collection through the [Skills CLI](https://github.com/vercel-labs/skills).
+No dedicated npm package or plugin manifests are required:
 
 ```sh
 npx skills add antoniofulg/security-lifecycle
 ```
 
-Liste as opções ou escolha somente a skill necessária:
+List available skills or select only the one needed:
 
 ```sh
 npx skills add antoniofulg/security-lifecycle --list
@@ -36,83 +36,82 @@ npx skills add antoniofulg/security-lifecycle --skill security-implementation
 npx skills add antoniofulg/security-lifecycle --skill security-review
 ```
 
-Esses comandos usam a branch padrão do repositório; mudanças em PR aparecem
-somente após merge. Para testar este checkout antes do merge, use seu caminho
-absoluto como origem no projeto consumidor. A descoberta local é somente leitura:
+These commands use the repository's default branch; PR changes become available
+after merging. To test this checkout before merging, use its absolute path as
+the source from the consuming project. Local discovery is read-only:
 
 ```sh
 npx skills add . --list
 ```
 
-O source canônico fica em `skills/<nome>/SKILL.md`. O CLI instala cada pasta
-completa, incluindo referências, metadados e textos legais. A raiz contém apenas
-documentação, validação e avaliações de manutenção. Exemplos de prompts:
+Canonical source lives in `skills/<name>/SKILL.md`. The CLI installs each complete
+directory, including references, metadata and legal texts. The repository root
+contains maintenance documentation, validation and evaluations. Example prompts:
 
 ```text
-Use $security-spec para definir requisitos de download privado por ID.
-Use $security-threat-model para modelar nosso webhook de importação.
-Use $security-implementation para implementar este endpoint com defaults seguros.
-Use $security-review em diff-review sobre a alteração indicada.
-Use $security-review em full-audit no escopo pré-release acordado.
+Use $security-spec to define requirements for private downloads by ID.
+Use $security-threat-model to model our import webhook.
+Use $security-implementation to implement this endpoint with secure defaults.
+Use $security-review in diff-review mode for the specified change.
+Use $security-review in full-audit mode for the agreed pre-release scope.
 ```
 
-Nada é instalado globalmente por este repositório. Antes de instalar, valide as
-skills e inventarie versões antigas com nomes iguais — especialmente
-security-review e security-threat-model. Planeje substituição ou desativação,
-preservando customizações e cópia recuperável. Não mantenha versões concorrentes
-com o mesmo nome. Cada pasta já inclui os textos legais aplicáveis; seus links
-locais funcionam mesmo fora deste repositório. A instalação padrão é por projeto;
-estes exemplos não pedem instalação global.
+This repository does not install anything globally. Before installing, validate
+the skills and inventory older versions with matching names, especially
+security-review and security-threat-model. Plan replacement or deactivation,
+preserving customizations and a recoverable copy. Do not keep competing versions
+with the same name. Each directory includes its applicable legal texts, and local
+links work outside this repository. Installation is project-scoped by default;
+these examples do not request global installation.
 
-## Referências por superfície
+## References by surface
 
-Implementação organiza os conceitos em identidade/acesso, dados/persistência,
-entrada/execução, frontend/navegador, infraestrutura/operação e agentes/ferramentas.
-Review usa a mesma
-abordagem de superfícies, com critérios de evidência e confiança próprios.
-Os conceitos se aplicam a bancos de dados, backend e frontend sem uma lista
-fechada de linguagens ou frameworks suportados.
+Implementation groups concepts into identity/access, data/persistence,
+input/execution, frontend/browser, infrastructure/operation and agents/tools.
+Review uses the same surface-based approach with its own evidence and confidence
+criteria. These concepts apply to databases, backends and frontends without a
+closed list of supported languages or frameworks.
 
-A stack e a versão continuam sendo detectadas para verificar como os controles
-funcionam. Quando a conclusão depende de escaping, binding, middleware, isolamento
-transacional ou outro comportamento específico, consulte documentação oficial
-atual pelo mecanismo disponível no projeto consumidor. Sem essa evidência,
-declare a limitação; não invente uma API ou assuma proteção pelo nome da tecnologia.
+The stack and version are still detected to verify how controls work. When a
+conclusion depends on escaping, binding, middleware, transaction isolation or
+another specific behavior, consult current official documentation through the
+consuming project's available mechanism. Without that evidence, state the
+limitation; do not invent an API or assume protection from a technology's name.
 
-## Agentes, MCP e WebMCP
+## Agents, MCP and WebMCP
 
-As quatro skills incluem uma referência condicional de agentes e ferramentas,
-com seções próprias para consumidor/provedor e MCP/WebMCP. Não há uma quinta
-skill nem necessidade de carregar protocolos ausentes do projeto.
+All four skills include a conditional agent/tool reference with sections for
+consumers/providers and MCP/WebMCP. There is no fifth skill and no need to load
+protocols absent from the project.
 
-O núcleo trata de autoridade delegada, autorização de ações e objetos, conteúdo
-de tools não confiável, divulgação de dados e confirmação vinculada à operação.
-Metadados e hints não substituem controles; prompts hostis sem caminho demonstrado
-não são automaticamente vulnerabilidades confirmadas.
+The common guidance covers delegated authority, action/object authorization,
+untrusted tool content, data disclosure and operation-bound confirmation.
+Metadata and hints do not replace controls; hostile prompts without a demonstrated
+path are not automatically confirmed vulnerabilities.
 
-- **MCP:** distingue HTTP de stdio; valida destinatário/scopes de credenciais,
-  evita token passthrough, examina consentimento de proxies, handles de estado,
-  descoberta/redirects e privilégios de processos locais. A versão 2026-07-28 é
-  stateless; não exige sessões de protocolo ou OAuth em toda ferramenta pública.
-- **WebMCP:** examina origem/frame, contexto autenticado, paridade de controles
-  entre UI/tool/backend, dados solicitados em excesso e ações sensíveis. Confirma
-  o navegador/versão; não presume que APIs propostas ou hints imponham consentimento.
+- **MCP:** distinguishes HTTP from stdio; validates credential recipients/scopes,
+  prevents token passthrough, and examines proxy consent, state handles,
+  discovery/redirects and local process privileges. Version 2026-07-28 is stateless;
+  it does not require protocol sessions or OAuth for every public tool.
+- **WebMCP:** examines origins/frames, authenticated context, control parity across
+  UI/tool/backend paths, excessive data requests and sensitive actions. It checks
+  the browser/version rather than assuming proposed APIs or hints enforce consent.
 
-Base: [segurança MCP](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/aa8ce049f089f92618340190d4ece141f663310d/docs/docs/2026-07-28/tutorials/security/security_best_practices.mdx)
-e [segurança/privacidade WebMCP](https://github.com/webmachinelearning/webmcp/blob/97da8f515427594c856307e3476c0a0db9698fbb/security-privacy-questionnaire.md),
-com SHAs e licenças registrados. Consulte documentação atual para a versão real
-do consumidor; cobertura conceitual não é certificação do protocolo/navegador.
+Sources: [MCP security](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/aa8ce049f089f92618340190d4ece141f663310d/docs/docs/2026-07-28/tutorials/security/security_best_practices.mdx)
+and [WebMCP security/privacy](https://github.com/webmachinelearning/webmcp/blob/97da8f515427594c856307e3476c0a0db9698fbb/security-privacy-questionnaire.md),
+with recorded SHAs and licenses. Consult current documentation for the consumer's
+actual version; conceptual coverage is not protocol or browser certification.
 
 ```text
-Use $security-spec para definir autorização e consentimento das nossas tools MCP.
-Use $security-threat-model no consumidor agente e nas tools WebMCP deste design.
-Use $security-implementation para proteger despacho, credenciais e confirmação.
-Use $security-review em diff-review neste handler MCP e sua política cross-file.
+Use $security-spec to define authorization and consent for our MCP tools.
+Use $security-threat-model on this design's agent consumer and WebMCP tools.
+Use $security-implementation to secure dispatch, credentials and confirmation.
+Use $security-review in diff-review mode on this MCP handler and its cross-file policy.
 ```
 
-## Validação
+## Validation
 
-Requer Python 3.10+; somente standard library, sem instalação de dependências.
+Requires Python 3.10+ and only the standard library; no dependencies to install.
 
 ```sh
 python3 scripts/validate_skills.py
@@ -120,34 +119,32 @@ python3 -m unittest discover -s evals -p 'test_*.py'
 npx --yes skills@1.5.26 add . --list
 ```
 
-O validador é somente leitura. Verifica frontmatter, nomes e descriptions,
-UI metadata, links locais e anchors, referências, marcadores de trabalho
-incompleto, capitalização, limites de 150 linhas/1.800 palavras por SKILL.md e
-padrões de secrets nas fixtures. Também limita cada entrada a 12.000 bytes e
-rejeita entradas aninhadas e descriptions vazias, duplicadas ou acima de 1.024
-caracteres. Não impõe frases, exclusões ou palavras-chave; precisão de roteamento
-é avaliada com prompts positivos e negativos, não por correspondência lexical.
-Também exige licenças/notices por skill e rejeita links que escapam da pasta
-instalável. Os testes verificam as cópias legais e as skills fora da raiz do repo.
-Usa um perfil YAML deliberadamente restrito.
-Não prova ausência de todos os formatos de segredo nem qualidade semântica.
+The read-only validator checks frontmatter, names/descriptions, UI metadata,
+local links/anchors, references, unfinished markers, capitalization, entrypoint
+limits of 150 lines/1,800 words, and secret patterns in fixtures. It also limits
+each entrypoint to 12,000 bytes and rejects nested entrypoints and blank,
+duplicate or over-1,024-character descriptions. It does not impose phrases,
+exclusions or keywords; routing accuracy is evaluated with positive and negative
+prompts rather than lexical matching. It requires per-skill licenses/notices and
+rejects links escaping an installable directory. Tests verify legal copies and
+skills outside the repository root. The YAML profile is deliberately restricted.
+These checks do not prove the absence of every secret format or semantic quality.
 
-As [avaliações comportamentais](evals/README.md) separam prompts e expectativas.
-O [registro desta execução](evals/results.md) reúne evidências e limitações.
-O [registro de agentes e ferramentas](evals/agent_tools_results.md) documenta
-as avaliações específicas de MCP/WebMCP e as verificações das fontes.
-Fixtures são virtuais e não executáveis; credenciais são marcadores inertes.
-Review não aplica patches automaticamente, não testa credenciais reais e não
-instala dependências vulneráveis. Auditoria de dependências requer ferramentas
-ou bases atuais e registra limitações quando indisponíveis.
+[Behavioral evaluations](evals/README.md) separate prompts from expectations.
+The [evaluation record](evals/results.md) captures evidence and limitations.
+The [agent/tool record](evals/agent_tools_results.md) documents MCP/WebMCP-specific
+evaluations and source checks. Fixtures are virtual and non-executable;
+credentials are inert markers. Review does not automatically apply patches, test
+real credentials or install vulnerable dependencies. Dependency audits require
+current tools/databases and record limitations when those are unavailable.
 
-## Licenças
+## Licenses
 
-[LICENSE](LICENSE) delimita a coleção: Markdown de security-review sob CC BY-SA
-4.0; demais contribuições sob Apache-2.0, preservando termos upstream.
-[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) registra SHAs, data, fontes,
-mudanças e atribuição Sentry/OWASP, GitHub, OpenAI, MCP e WebMCP/W3C.
-As novas referências preservam os termos CC-BY/MIT/Apache do MCP e W3C Software
-and Document License; cópias acompanham cada skill instalada. A intenção inicial de uso
-privado não altera as obrigações de redistribuição pública. Não há dependência
-de Vercel nem necessidade de ferramentas de deploy para usar estas skills.
+[LICENSE](LICENSE) defines file-level terms: security-review Markdown uses
+CC BY-SA 4.0; other contributions use Apache-2.0 while preserving upstream terms.
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) records SHAs, dates, sources,
+changes and attribution to Sentry/OWASP, GitHub, OpenAI, MCP and WebMCP/W3C.
+The new references preserve MCP's CC-BY/MIT/Apache terms and the W3C Software and
+Document License; copies accompany each installed skill. The original private-use
+intent does not change public redistribution obligations. Vercel and deployment
+tools are not required to use these skills.
