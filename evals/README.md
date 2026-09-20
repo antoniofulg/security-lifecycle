@@ -58,6 +58,18 @@ Record each case as pass, fail or blocked, with evidence and gaps. Do not count
 keyword presence or the structural validator as a behavioral pass. For failed
 cases, fix only demonstrated defects and rerun the affected case.
 
+## Extended-domain cases
+
+[domain_cases.json](domain_cases.json) adds five phase-specific cases for message
+delivery, data lifecycle, account recovery/linking, privileged local IPC and the
+whole-codebase audit coordinator. Keep [domain_expectations.json](domain_expectations.json)
+hidden from evaluators. The audit case is a virtual quick/source-only run: return
+coverage/finding records without writing into this repository or executing fixtures.
+Compare actual output to the separate oracle and record reference selection,
+independence limits and any deferred units.
+See the [independent evaluation record](domain_results.md) for the blind run,
+review findings, fixes and limitations.
+
 Run structural checks and their adversarial tests from the repository root:
 
 ```sh
@@ -71,7 +83,7 @@ and entrypoint size (150 lines, 1,800 words, 12,000 UTF-8 bytes).
 Description semantics and security judgment remain behavioral checks.
 Secret detection is heuristic and cannot prove the absence of arbitrary formats.
 
-Installation is checked in CI with Skills CLI 1.5.26: discover four entrypoints,
+Installation is checked in CI with Skills CLI 1.5.26: discover five entrypoints,
 install into a fresh temporary project using `--agent codex --copy --yes`, then
 validate that installed `.agents` tree. No global agent directories are touched.
 The structural suite also checks portable copies and rejects links escaping a
@@ -80,11 +92,12 @@ single skill directory, even if those links work in the source repository.
 ## Description routing
 
 For [routing_cases.json](routing_cases.json), give an independent evaluator only
-the four names/descriptions and the prompts. Ask it to choose one skill or none
+the five names/descriptions and the prompts. Ask it to choose one skill or none
 without reading skill bodies. Compare against [routing_expectations.json](routing_expectations.json)
 afterward. The controls include unrelated refactoring and a typo fix; generic
 programming work must not activate a security skill merely because code is present.
 
-For disclosure changes, run a scoped review and a full audit separately, recording
-which files were actually read. The diff should not load full-audit instructions;
-the audit must still perform its second pass and preserve report/patch obligations.
+For disclosure changes, run a scoped review and a whole-codebase audit separately,
+recording which files were actually read. The focused review must not load audit
+coordination instructions; the coordinator must preserve independent validation,
+coverage state and report/patch authorization boundaries.

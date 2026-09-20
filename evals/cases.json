@@ -53,8 +53,8 @@
   },
   {
     "id": "06-full-audit",
-    "skill": "security-review",
-    "prompt": "Use $security-review in full-audit mode on the provided virtual files. Do not execute or install the fixture. Query a current database for the dependency. Propose patches without applying them.",
+    "skill": "security-audit-coordinator",
+    "prompt": "Use $security-audit-coordinator on the provided virtual project. Do not execute or install the fixture. Query a current database for the dependency. Propose patches without applying them.",
     "files": {
       "app.py": "from flask import Flask, request\nimport sqlite3\nfrom pathlib import Path\napp = Flask(__name__)\n@app.get('/search')\ndef search():\n    db = sqlite3.connect('/data/app.db')\n    return {'rows': db.execute(\"SELECT name FROM people WHERE name = '\" + request.args['q'] + \"'\").fetchall()}\n@app.post('/upload')\ndef upload():\n    file = request.files['file']\n    file.save(Path('/data/uploads') / file.filename)\n    return {'ok': True}\n",
       "runtime.env": "PAYMENT_API_KEY=\"[REDACTED_TEST_SECRET]\"\n",
