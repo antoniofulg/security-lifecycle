@@ -1,0 +1,27 @@
+{
+  "D01-spec-message-delivery": [
+    "Stable ABUSE/SEC links for wrong producer or tenant, duplicate, replay, stale/out-of-order, poison and retry/dead-letter paths",
+    "Observable idempotency scope, per-message authorization, acknowledgment/commit and resource-budget requirements",
+    "Negative tests plus one authorized control; undecided product policy remains explicit"
+  ],
+  "D02-threat-data-lifecycle": [
+    "Primary, search, preview cache, export, backup and restore boundaries with owners/readers",
+    "Revocation, deletion/tombstone, stale derived copies and restore reauthorization abuse paths",
+    "Material questions for tenant binding, restore authority and lifecycle propagation; conditional priorities if unanswered"
+  ],
+  "D03-implementation-recovery": [
+    "Current identity and fresh assurance bound to exact provider, callback state and initiating session",
+    "One-time expiry and atomic consumption for recovery codes and pending attempts",
+    "Valid linking/recovery tests plus callback swap, replay, stale attempt and cross-account denials; no invented SDK"
+  ],
+  "D04-review-local-ipc": [
+    "Confirmed local privilege boundary failure: any valid peer reaches root install without installers-group authorization",
+    "Evidence distinguishes peer existence from policy authorization and traces the socket caller to privileged_install",
+    "Path and signature questions remain Needs verification and are not promoted to traversal or code-execution findings"
+  ],
+  "D05-audit-mixed-surfaces": [
+    "Deterministic quick-profile coverage units for API object authorization and message identity/replay/idempotency",
+    "API ownership stays needs_validation unless caller control and db.find policy complete the static path; messaging stays needs_validation with exact blockers",
+    "Validated three-state records, source-derived coverage IDs, partial/deferred non-delete or retry gaps and no source changes"
+  ]
+}

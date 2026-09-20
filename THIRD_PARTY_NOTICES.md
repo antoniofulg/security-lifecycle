@@ -1,7 +1,7 @@
 # Third-party notices and provenance
 
-Retrieved 2026-09-12 UTC. SHAs resolved from each repository's `main` using the
-GitHub commits API before adaptation. Links below are immutable snapshots.
+Sources were retrieved on the dates stated below. SHAs resolved from each
+repository's `main` before adaptation. Links below are immutable snapshots.
 This is an original, condensed rewrite: examples, routing, contracts and
 evaluation fixtures were newly written. No upstream skill is vendored wholesale.
 
@@ -11,6 +11,7 @@ evaluation fixtures were newly written. No upstream skill is vendored wholesale.
 | [GitHub Awesome Copilot security-review](https://github.com/github/awesome-copilot/tree/7568a482ce2df38f8965ab5336a3220db796a4ba/skills/security-review) | `7568a482ce2df38f8965ab5336a3220db796a4ba` | [MIT](https://github.com/github/awesome-copilot/blob/7568a482ce2df38f8965ab5336a3220db796a4ba/LICENSE) | Only security-review: audit sequence, dependency and secret sections, cross-file second pass, finding fields, proposed patches, seven language families, CI/IaC. |
 | [OpenAI security-best-practices](https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-best-practices) | `49f948faa9258a0c61caceaf225e179651397431` | [Local Apache-2.0](https://github.com/openai/skills/blob/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-best-practices/LICENSE.txt) | Only security-implementation: stack selection, secure defaults, passive high-impact warnings, documented exceptions, isolated fixes and regression checks; React, Vue, Next.js, Express, jQuery, Django, Flask, FastAPI, Go; TLS/cookie context. |
 | [OpenAI security-threat-model](https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-threat-model) | `49f948faa9258a0c61caceaf225e179651397431` | [Local Apache-2.0](https://github.com/openai/skills/blob/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-threat-model/LICENSE.txt) | Only security-threat-model: repository evidence, separate execution planes, assets, boundaries, capabilities, abuse paths, prioritization, material-assumption check-in and Mermaid. |
+| [Cloudflare security-audit](https://github.com/cloudflare/security-audit-skill/tree/c1c8a8c1471069fb0e188eeaff69b8e8db6564a8/skills/security-audit) | `c1c8a8c1471069fb0e188eeaff69b8e8db6564a8` | [MIT](https://github.com/cloudflare/security-audit-skill/blob/c1c8a8c1471069fb0e188eeaff69b8e8db6564a8/LICENSE) | All five skills: original phase-specific coverage of identity protocols, distributed data, lifecycle, availability, operations, AI/RAG, native/binary and local platforms; audit coordinator: coverage ledger, bounded workers, independent verification, stable verdicts and additive reruns. |
 
 The original security-spec core, structural validator and fixtures were written
 for the requested contract. The new agent-tools reference also uses the official
@@ -39,6 +40,13 @@ references/security-controls-and-assets.md informed its two references.
 
 Recursive source-tree checks found no relevant NOTICE file for these four skills:
 Sentry has none; the GitHub and OpenAI NOTICE files belong to unrelated skills.
+
+Cloudflare source and MIT license were checked 2026-09-19. Its repository contains
+no separate NOTICE file. The source was studied as an audit architecture and attack-
+surface taxonomy; no prompt, schema or implementation was copied verbatim. The
+collection uses smaller phase-specific references, retains static evidence as a
+valid confirmation method and implements one original Python-standard-library
+artifact validator. Preserve [Cloudflare's MIT text](licenses/Cloudflare-MIT.txt).
 
 ## Changes from upstream
 
@@ -87,6 +95,8 @@ distinguished draft recommendations from implementation evidence.
 - Restricted implementation guidance to secure construction; no vulnerability-report mode.
 - Reorganized technology guides into security concepts spanning data, backend,
   frontend and operation, preserving contextual checks against current docs.
+- Added a separate whole-codebase audit coordinator without turning it into a
+  dispatcher for the four lifecycle phases.
 - Bundled skill-specific provenance and applicable license texts inside every
   installable skill, so installation does not depend on files outside its folder.
 

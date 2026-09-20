@@ -1,7 +1,9 @@
 # Maintaining security-lifecycle
 
-Keep four independent skills under `skills/`. Their consumer chooses the phase;
-do not add a dispatcher or a spec-driven workflow.
+Keep four independent lifecycle skills plus one independently installable audit
+coordinator under `skills/`. Their consumer chooses the phase. The coordinator
+applies only to explicit whole-codebase audits; do not turn it into a dispatcher
+for Specify, Design, Implement or focused Review work.
 Write repository documentation, skill metadata, prompts and fixture prose in English.
 
 Before adapting upstream material, pin its commit and check the applicable local

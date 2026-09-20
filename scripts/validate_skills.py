@@ -15,7 +15,13 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 
-NAMES = {"security-spec", "security-threat-model", "security-implementation", "security-review"}
+NAMES = {
+    "security-audit-coordinator",
+    "security-implementation",
+    "security-review",
+    "security-spec",
+    "security-threat-model",
+}
 SECRET_MARKER = "[REDACTED_TEST_SECRET]"
 UNFINISHED_PATTERN = re.compile(r"\b(?:" + "|".join(
     ("TO" + "DO", "TB" + "D", "FIX" + "ME", "PLACE" + "HOLDER", "YOUR_" + "[A-Z_]+")
@@ -133,10 +139,10 @@ def validate(root):
         return ["skills/: missing directory"]
     expected = {skill_root / name / "SKILL.md" for name in NAMES}
     if {p for p in files if p.name == "SKILL.md"} != expected:
-        errors.append("skills/: expected exactly four entrypoints, without nested SKILL.md files")
+        errors.append("skills/: expected exactly five entrypoints, without nested SKILL.md files")
     dirs = {p.name for p in skill_root.iterdir() if p.is_dir()}
     if dirs != NAMES:
-        errors.append("skills/: expected exactly the four security-lifecycle directories")
+        errors.append("skills/: expected exactly the five security-lifecycle directories")
     for directory in sorted(skill_root.iterdir()):
         if not directory.is_dir():
             continue
@@ -243,7 +249,7 @@ def main():
     if errors:
         print("\n".join(errors), file=sys.stderr)
         return 1
-    print("PASS: four skills; metadata, references, links, placeholders, fixture secrets and size limits")
+    print("PASS: five skills; metadata, references, links, placeholders, fixture secrets and size limits")
     return 0
 
 

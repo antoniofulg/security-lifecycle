@@ -1,0 +1,45 @@
+[
+  {
+    "id": "D01-spec-message-delivery",
+    "skill": "security-spec",
+    "prompt": "Use $security-spec to define security requirements and negative tests for this tenant-scoped command consumer.",
+    "files": {
+      "feature.md": "A broker delivers tenant billing commands at least once. Producers authenticate, but message identity, duplicate handling, ordering, retry limits, dead-letter access and idempotency scope are undecided. One authorized command must still succeed."
+    }
+  },
+  {
+    "id": "D02-threat-data-lifecycle",
+    "skill": "security-threat-model",
+    "prompt": "Use $security-threat-model to model this document lifecycle. Ask only material questions before the final model.",
+    "files": {
+      "design.md": "Private tenant documents are written to a primary database, indexed for search, cached for previews, exported by background jobs and included in backups. Users may revoke sharing and delete documents. Operators can restore backups, but the design does not state how current ACLs, deletion tombstones or tenant identity are reapplied."
+    }
+  },
+  {
+    "id": "D03-implementation-recovery",
+    "skill": "security-implementation",
+    "prompt": "Use $security-implementation to propose SDK-independent pseudocode and tests for the requested account-linking and recovery flow.",
+    "files": {
+      "contract.md": "A signed-in user may link an external identity after fresh authentication. The callback must belong to the initiating session and intended provider. Recovery codes are one-time and expire. Linking or recovery invalidates earlier pending attempts and product-policy sessions. Do not choose an SDK or invent browser APIs."
+    }
+  },
+  {
+    "id": "D04-review-local-ipc",
+    "skill": "security-review",
+    "prompt": "Use $security-review on this bounded local IPC slice. Do not execute it. Report only confirmed boundary failures and exact uncertainties.",
+    "files": {
+      "helper.c": "int handle(int fd, const char *path) {\n  struct peer p = peer_credentials(fd);\n  if (!p.valid) return -1;\n  return privileged_install(path);\n}\n",
+      "context.md": "The Unix socket is writable by unprivileged local users. peer_credentials confirms that a peer exists but the policy permits only members of the installers group. privileged_install installs the caller-selected package as root. No downstream group or package authorization exists. path parsing and signature verification are outside this slice and unknown."
+    }
+  },
+  {
+    "id": "D05-audit-mixed-surfaces",
+    "skill": "security-audit-coordinator",
+    "prompt": "Use $security-audit-coordinator for a quick, source-only audit of this virtual project. Do not execute fixtures. Return the coverage and finding records plus a concise report.",
+    "files": {
+      "api.py": "def get_document(user, document_id):\n    return db.find(document_id)\n",
+      "consumer.py": "def consume(message):\n    if message.kind == 'delete':\n        db.delete(message.document_id)\n        broker.ack(message)\n",
+      "context.md": "api.py is authenticated but has no shared authorization guard. Documents are private and tenant-owned. The broker is at-least-once; message producer identity, tenant binding and idempotency are not visible in source. No deployment traffic or dependency lookup is authorized."
+    }
+  }
+]
