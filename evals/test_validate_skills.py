@@ -116,7 +116,16 @@ class ValidatorTests(unittest.TestCase):
         path = self.skill.parent / "references/nested/SKILL.md"
         path.parent.mkdir()
         path.write_text(self.skill.read_text())
-        self.reject("exactly five entrypoints")
+        self.reject(f"exactly {len(VALIDATOR.NAMES)} entrypoints")
+
+    def test_missing_pentest_skill(self):
+        shutil.rmtree(self.root / "skills/security-pentest")
+        self.reject("entrypoints")
+        self.reject("security-lifecycle directories")
+
+    def test_unexpected_skill_directory(self):
+        (self.root / "skills/unexpected-skill").mkdir()
+        self.reject("security-lifecycle directories")
 
     def test_fenced_heading_is_not_anchor(self):
         self.skill.write_text(self.skill.read_text() + "\n```md\n# Ghost\n```\n[x](#ghost)\n")
@@ -171,7 +180,7 @@ class ValidatorTests(unittest.TestCase):
     def test_bundled_legal_texts_match_sources(self):
         apache = (ROOT / "licenses/Apache-2.0.txt").read_bytes()
         for name in ("security-spec", "security-implementation", "security-threat-model",
-                     "security-audit-coordinator"):
+                     "security-audit-coordinator", "security-pentest"):
             self.assertEqual(apache, (ROOT / "skills" / name / "LICENSE").read_bytes())
         for source in (ROOT / "licenses").iterdir():
             self.assertEqual(source.read_bytes(), (ROOT / "skills/security-review/licenses" / source.name).read_bytes())
@@ -180,7 +189,8 @@ class ValidatorTests(unittest.TestCase):
                 self.assertEqual((ROOT / "licenses" / filename).read_bytes(),
                                  (ROOT / "skills" / name / "licenses" / filename).read_bytes())
         cloudflare = (ROOT / "licenses/Cloudflare-MIT.txt").read_bytes()
-        for name in VALIDATOR.NAMES:
+        for name in ("security-spec", "security-implementation", "security-threat-model",
+                     "security-review", "security-audit-coordinator"):
             self.assertEqual(cloudflare,
                              (ROOT / "skills" / name / "licenses/Cloudflare-MIT.txt").read_bytes())
 
@@ -188,7 +198,8 @@ class ValidatorTests(unittest.TestCase):
         import json
         for inputs, oracle in (("cases.json", "expectations.json"),
                                ("agent_tools_cases.json", "agent_tools_expectations.json"),
-                               ("domain_cases.json", "domain_expectations.json")):
+                               ("domain_cases.json", "domain_expectations.json"),
+                               ("pentest_cases.json", "pentest_expectations.json")):
             cases = json.loads((ROOT / "evals" / inputs).read_text())
             expected = json.loads((ROOT / "evals" / oracle).read_text())
             ids = [case["id"] for case in cases]

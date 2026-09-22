@@ -70,6 +70,25 @@ independence limits and any deferred units.
 See the [independent evaluation record](domain_results.md) for the blind run,
 review findings, fixes and limitations.
 
+## Runtime pentest cases
+
+[pentest_cases.json](pentest_cases.json) contains six virtual cases for
+`security-pentest`. Give an independent evaluator an isolated copy of that skill
+and the selected prompt/files only. Keep
+[pentest_expectations.json](pentest_expectations.json) and prior results hidden.
+The evaluator may read the skill and relevant references, but must not execute
+fixture code, launch tools against targets or contact fixture URLs. Trace data
+simulates prior observations; it is not a measured live pentest.
+
+The cases cover authorized cross-organization access with a protected field
+control, missing authority, scope/redirect and instruction-injection boundaries,
+scanner false positives and lost sessions, source/deployment drift, and feature
+selection under traffic/tool constraints. Record actual responses, reference
+selection and limitations before comparing them with the separate expectations.
+Evaluate R11-R15 alongside existing routing controls using metadata only.
+See [pentest evaluation results](pentest_results.md) for actual-output excerpts,
+oracle comparisons, the evaluated snapshot and limits of the simulated run.
+
 Run structural checks and their adversarial tests from the repository root:
 
 ```sh
@@ -83,7 +102,7 @@ and entrypoint size (150 lines, 1,800 words, 12,000 UTF-8 bytes).
 Description semantics and security judgment remain behavioral checks.
 Secret detection is heuristic and cannot prove the absence of arbitrary formats.
 
-Installation is checked in CI with Skills CLI 1.5.26: discover five entrypoints,
+Installation is checked in CI with Skills CLI 1.5.26: discover six entrypoints,
 install into a fresh temporary project using `--agent codex --copy --yes`, then
 validate that installed `.agents` tree. No global agent directories are touched.
 The structural suite also checks portable copies and rejects links escaping a
@@ -92,7 +111,7 @@ single skill directory, even if those links work in the source repository.
 ## Description routing
 
 For [routing_cases.json](routing_cases.json), give an independent evaluator only
-the five names/descriptions and the prompts. Ask it to choose one skill or none
+the six names/descriptions and the prompts. Ask it to choose one skill or none
 without reading skill bodies. Compare against [routing_expectations.json](routing_expectations.json)
 afterward. The controls include unrelated refactoring and a typo fix; generic
 programming work must not activate a security skill merely because code is present.

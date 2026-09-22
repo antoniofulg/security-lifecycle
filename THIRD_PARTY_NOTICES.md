@@ -11,7 +11,7 @@ evaluation fixtures were newly written. No upstream skill is vendored wholesale.
 | [GitHub Awesome Copilot security-review](https://github.com/github/awesome-copilot/tree/7568a482ce2df38f8965ab5336a3220db796a4ba/skills/security-review) | `7568a482ce2df38f8965ab5336a3220db796a4ba` | [MIT](https://github.com/github/awesome-copilot/blob/7568a482ce2df38f8965ab5336a3220db796a4ba/LICENSE) | Only security-review: audit sequence, dependency and secret sections, cross-file second pass, finding fields, proposed patches, seven language families, CI/IaC. |
 | [OpenAI security-best-practices](https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-best-practices) | `49f948faa9258a0c61caceaf225e179651397431` | [Local Apache-2.0](https://github.com/openai/skills/blob/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-best-practices/LICENSE.txt) | Only security-implementation: stack selection, secure defaults, passive high-impact warnings, documented exceptions, isolated fixes and regression checks; React, Vue, Next.js, Express, jQuery, Django, Flask, FastAPI, Go; TLS/cookie context. |
 | [OpenAI security-threat-model](https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-threat-model) | `49f948faa9258a0c61caceaf225e179651397431` | [Local Apache-2.0](https://github.com/openai/skills/blob/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-threat-model/LICENSE.txt) | Only security-threat-model: repository evidence, separate execution planes, assets, boundaries, capabilities, abuse paths, prioritization, material-assumption check-in and Mermaid. |
-| [Cloudflare security-audit](https://github.com/cloudflare/security-audit-skill/tree/c1c8a8c1471069fb0e188eeaff69b8e8db6564a8/skills/security-audit) | `c1c8a8c1471069fb0e188eeaff69b8e8db6564a8` | [MIT](https://github.com/cloudflare/security-audit-skill/blob/c1c8a8c1471069fb0e188eeaff69b8e8db6564a8/LICENSE) | All five skills: original phase-specific coverage of identity protocols, distributed data, lifecycle, availability, operations, AI/RAG, native/binary and local platforms; audit coordinator: coverage ledger, bounded workers, independent verification, stable verdicts and additive reruns. |
+| [Cloudflare security-audit](https://github.com/cloudflare/security-audit-skill/tree/c1c8a8c1471069fb0e188eeaff69b8e8db6564a8/skills/security-audit) | `c1c8a8c1471069fb0e188eeaff69b8e8db6564a8` | [MIT](https://github.com/cloudflare/security-audit-skill/blob/c1c8a8c1471069fb0e188eeaff69b8e8db6564a8/LICENSE) | Four lifecycle skills and audit coordinator: original phase-specific coverage of identity protocols, distributed data, lifecycle, availability, operations, AI/RAG, native/binary and local platforms; audit coordinator: coverage ledger, bounded workers, independent verification, stable verdicts and additive reruns. |
 
 The original security-spec core, structural validator and fixtures were written
 for the requested contract. The new agent-tools reference also uses the official
@@ -49,6 +49,17 @@ valid confirmation method and implements one original Python-standard-library
 artifact validator. Preserve [Cloudflare's MIT text](licenses/Cloudflare-MIT.txt).
 
 ## Changes from upstream
+
+### Original runtime pentest skill — written 2026-09-22
+
+`security-pentest` and its evaluation scenarios are original Apache-2.0 work.
+They add authorized runtime testing, capability discovery, controlled evidence
+collection and coverage reporting without adapting or vendoring upstream skill
+text, code, documentation passages or payload catalogs. Conditional OWASP and
+PortSwigger links are external further-reading references. Their inclusion does
+not extend the older five skills' upstream derivation to this new skill.
+Its [bundled provenance](skills/security-pentest/THIRD_PARTY_NOTICES.md) and the
+canonical [Apache-2.0 text](licenses/Apache-2.0.txt) travel with the installation.
 
 ### Agent and tool security sources — checked 2026-09-12
 
