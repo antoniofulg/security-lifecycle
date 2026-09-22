@@ -2,9 +2,10 @@
 
 [![skills.sh](https://skills.sh/b/antoniofulg/security-lifecycle)](https://skills.sh/antoniofulg/security-lifecycle)
 
-Four independent lifecycle skills, one whole-codebase audit coordinator and one
-runtime pentest skill. The consuming workflow selects the skill; the coordinator
-does not dispatch Specify, Design, Implement, focused Review or runtime testing.
+Six independently installable security skills covering requirements, threat
+modeling, secure implementation, focused review, whole-codebase audits and runtime
+pentesting. Choose the skill for the task; the audit coordinator handles
+whole-codebase audits and does not dispatch the other workflows.
 
 | Skill | When to use | Output |
 | --- | --- | --- |
@@ -227,15 +228,25 @@ stop/cleanup conditions. Source-only audit authorization does not authorize
 target traffic, and pentesting does not automatically authorize fixes or
 publication. The audit coordinator's source-only boundary is unchanged.
 
-## References by surface
+## Security topics
 
-Each lifecycle skill keeps phase-specific guidance and conditionally loads broader
-identity/client, distributed-data, platform-integrity and AI surfaces. Implementation
-and review add focused protocol/messaging, data-lifecycle, resource-availability,
-native/binary and local-platform references. The audit coordinator selects five
-domain groups only after reconnaissance. These concepts apply across databases,
-backends, frontends, native targets and deployment systems without a closed list
-of supported languages or frameworks.
+The six skills organize guidance by security surface. Each loads the topics
+relevant to its workflow and the application being assessed. The pentest skill
+focuses on web apps and APIs; the other workflows also cover native and local
+platforms.
+
+| Topic | Coverage |
+| --- | --- |
+| Identity and access | Authentication, object/function/field authorization, tenant isolation, sessions, account recovery, identity linking and federation |
+| Untrusted input and execution | Injection, command and template execution, parsing, deserialization, file uploads, path handling and server-side request forgery |
+| Browser and client boundaries | XSS, CSRF, CORS, origins, rendering, cookies and authorization parity across clients |
+| Data and secrets | Sensitive-data exposure, credential handling, cryptographic boundaries, persistence, caches, exports, backups, deletion and restoration |
+| Business logic and messaging | Workflow invariants, payments, webhooks, queues, event identity, replay, ordering, idempotency and race conditions |
+| Availability and abuse | Rate limits, quotas, expensive operations, resource amplification, retries, failure handling and spending limits |
+| Infrastructure and supply chain | Resolved dependencies and advisories, CI/build integrity, deployment configuration, containers, cloud permissions, transport and logging |
+| AI, agents and tools | Prompt injection, delegated authority, retrieval/memory isolation, tool authorization, outbound disclosure, MCP and WebMCP |
+| Native and local platforms | Memory and binary boundaries, local IPC, filesystem permissions, privileged helpers and desktop/mobile surfaces |
+| Verification and evidence | Positive/negative controls, coverage tracking, reproducible findings, source versus runtime evidence, redaction, cleanup and retesting |
 
 The stack and version are still detected to verify how controls work. When a
 conclusion depends on escaping, binding, middleware, transaction isolation or
@@ -243,12 +254,44 @@ another specific behavior, consult current official documentation through the
 consuming project's available mechanism. Without that evidence, state the
 limitation; do not invent an API or assume protection from a technology's name.
 
+## Source skills and foundations
+
+The collection combines original workflows with condensed adaptations of the
+following source skills. Links point to the pinned versions used to build this
+project; [provenance](THIRD_PARTY_NOTICES.md) records the commits, studied files,
+license checks and retained notices.
+
+| Source skill | Contribution to this collection |
+| --- | --- |
+| [Sentry — security-review](https://github.com/getsentry/skills/tree/c2f99a5b04b4cd992ec3022d7c2c3e23e938d241/skills/security-review) | Evidence, exploitability, confidence, framework protections and false-positive handling in `security-review`; includes its OWASP-derived reference material |
+| [GitHub Awesome Copilot — security-review](https://github.com/github/awesome-copilot/tree/7568a482ce2df38f8965ab5336a3220db796a4ba/skills/security-review) | Review sequence, dependency/secret checks, cross-file analysis, finding structure and proposed patches in `security-review` |
+| [OpenAI — security-best-practices](https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-best-practices) | Stack-aware secure defaults, implementation hardening, documented exceptions and regression checks in `security-implementation` |
+| [OpenAI — security-threat-model](https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-threat-model) | Repository evidence, assets, trust boundaries, abuse paths, prioritization and material-assumption checks in `security-threat-model` |
+| [Cloudflare — security-audit](https://github.com/cloudflare/security-audit-skill/tree/c1c8a8c1471069fb0e188eeaff69b8e8db6564a8/skills/security-audit) | Broader security-domain coverage in specification, modeling, implementation and review; coverage ledgers, bounded hunting and independent verification in `security-audit-coordinator` |
+
+The review skill's [OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/)
+material comes through Sentry. The pinned MCP and WebMCP security material
+described below extends the agent/tool guidance. The pentest skill
+links to [OWASP API Security](https://owasp.github.io/API-Security/editions/2023/en/0x11-t10/),
+[OWASP GenAI Security](https://genai.owasp.org/llmrisk/llm01-prompt-injection/)
+and [PortSwigger Web Security Academy](https://portswigger.net/web-security/all-topics)
+for conditional testing guidance.
+
+The `security-spec` core, repository tooling and evaluation fixtures are original
+work. The audit coordinator is an original, agent-neutral synthesis informed by
+Cloudflare's audit workflow. `security-pentest` is also an original workflow: its
+external testing links are further reading, not an adapted upstream skill or a
+bundled payload catalog.
+Every skill includes its own license and provenance so attribution travels with
+an independent installation.
+
 ## Agents, MCP and WebMCP
 
-All four lifecycle skills include a conditional agent/tool reference with sections
-for consumers/providers, MCP/WebMCP and general AI context/retrieval/memory. The
-audit coordinator has a separate AI-systems hunting reference. None loads these
-protocols when the project lacks the corresponding boundary.
+The specification, threat-modeling, implementation and review skills include
+conditional agent/tool references for consumers/providers, MCP/WebMCP and AI
+context/retrieval/memory. The audit coordinator has an AI-systems hunting reference;
+the pentest skill selects runtime AI/retrieval/tool checks when those features
+exist. Protocol-specific guidance is loaded only for the relevant boundary.
 
 The common guidance covers delegated authority, action/object authorization,
 untrusted tool content, data disclosure and operation-bound confirmation.
