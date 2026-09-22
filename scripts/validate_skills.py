@@ -18,6 +18,7 @@ from urllib.parse import unquote, urlsplit
 NAMES = {
     "security-audit-coordinator",
     "security-implementation",
+    "security-pentest",
     "security-review",
     "security-spec",
     "security-threat-model",
@@ -139,10 +140,10 @@ def validate(root):
         return ["skills/: missing directory"]
     expected = {skill_root / name / "SKILL.md" for name in NAMES}
     if {p for p in files if p.name == "SKILL.md"} != expected:
-        errors.append("skills/: expected exactly five entrypoints, without nested SKILL.md files")
+        errors.append(f"skills/: expected exactly {len(NAMES)} entrypoints, without nested SKILL.md files")
     dirs = {p.name for p in skill_root.iterdir() if p.is_dir()}
     if dirs != NAMES:
-        errors.append("skills/: expected exactly the five security-lifecycle directories")
+        errors.append(f"skills/: expected exactly the {len(NAMES)} security-lifecycle directories")
     for directory in sorted(skill_root.iterdir()):
         if not directory.is_dir():
             continue
@@ -249,7 +250,7 @@ def main():
     if errors:
         print("\n".join(errors), file=sys.stderr)
         return 1
-    print("PASS: five skills; metadata, references, links, placeholders, fixture secrets and size limits")
+    print(f"PASS: {len(NAMES)} skills; metadata, references, links, placeholders, fixture secrets and size limits")
     return 0
 
 

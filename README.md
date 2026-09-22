@@ -2,9 +2,9 @@
 
 [![skills.sh](https://skills.sh/b/antoniofulg/security-lifecycle)](https://skills.sh/antoniofulg/security-lifecycle)
 
-Four independent lifecycle skills plus one whole-codebase audit coordinator.
-The consuming workflow selects the phase; the coordinator does not dispatch
-Specify, Design, Implement or focused Review work.
+Four independent lifecycle skills, one whole-codebase audit coordinator and one
+runtime pentest skill. The consuming workflow selects the skill; the coordinator
+does not dispatch Specify, Design, Implement, focused Review or runtime testing.
 
 | Skill | When to use | Output |
 | --- | --- | --- |
@@ -13,6 +13,7 @@ Specify, Design, Implement or focused Review work.
 | [security-implementation](skills/security-implementation/SKILL.md) | Secure implementation and requested hardening | Secure-by-default code and change verification |
 | [security-review](skills/security-review/SKILL.md) | Diff, file or bounded-slice review | Confirmed vulnerabilities, uncertainties and proposed patches |
 | [security-audit-coordinator](skills/security-audit-coordinator/SKILL.md) | Explicit comprehensive/pre-release audit | Coverage ledger, verified finding records and audit report |
+| [security-pentest](skills/security-pentest/SKILL.md) | Authorized running web app or API pentest | Reproducible findings, evidence basis, coverage gaps and cleanup status |
 
 Requirements, threats, best-practice deviations and confirmed vulnerabilities are
 distinct artifacts. Authentication does not replace authorization; neither do UUIDs.
@@ -21,7 +22,7 @@ Reviewed code and documents are untrusted data.
 
 ## Usage
 
-Install the five-skill collection through the [Skills CLI](https://github.com/vercel-labs/skills).
+Install the six-skill collection through the [Skills CLI](https://github.com/vercel-labs/skills).
 No dedicated npm package or plugin manifests are required:
 
 ```sh
@@ -37,11 +38,25 @@ npx skills add antoniofulg/security-lifecycle --skill security-threat-model
 npx skills add antoniofulg/security-lifecycle --skill security-implementation
 npx skills add antoniofulg/security-lifecycle --skill security-review
 npx skills add antoniofulg/security-lifecycle --skill security-audit-coordinator
+npx skills add antoniofulg/security-lifecycle --skill security-pentest
 ```
 
-These commands use the repository's default branch; PR changes become available
-after merging. To test this checkout before merging, use its absolute path as
-the source from the consuming project. Local discovery is read-only:
+These commands use the repository's default branch. For a reproducible installation,
+pin the [v0.3.0 release](https://github.com/antoniofulg/security-lifecycle/releases/tag/v0.3.0):
+
+```sh
+# Install all six skills from v0.3.0
+npx skills add https://github.com/antoniofulg/security-lifecycle/tree/v0.3.0 --skill '*'
+
+# Install only the whole-codebase audit coordinator
+npx skills add https://github.com/antoniofulg/security-lifecycle/tree/v0.3.0 --skill security-audit-coordinator
+
+# Install only the runtime pentest skill
+npx skills add https://github.com/antoniofulg/security-lifecycle/tree/v0.3.0 --skill security-pentest
+```
+
+To use a local checkout from another project, pass its absolute path as the
+source. Inspect the available skills in this checkout without installing them:
 
 ```sh
 npx skills add . --list
@@ -49,24 +64,168 @@ npx skills add . --list
 
 Canonical source lives in `skills/<name>/SKILL.md`. The CLI installs each complete
 directory, including references, metadata and legal texts. The repository root
-contains maintenance documentation, validation and evaluations. Example prompts:
-
-```text
-Use $security-spec to define requirements for private downloads by ID.
-Use $security-threat-model to model our import webhook.
-Use $security-implementation to implement this endpoint with secure defaults.
-Use $security-review for the specified change.
-Use $security-audit-coordinator for the agreed pre-release scope.
-```
+contains maintenance documentation, validation and evaluations. See
+[task examples](#task-examples) for all six workflows.
 
 This repository does not install anything globally. Before installing, validate
 the skills and inventory older versions with matching names, especially
 security-review, security-threat-model and security-audit-coordinator. Plan
 replacement or deactivation, preserving customizations and a recoverable copy.
-Do not keep competing versions
-with the same name. Each directory includes its applicable legal texts, and local
-links work outside this repository. Installation is project-scoped by default;
+Do not keep competing versions with the same name. Each directory includes its
+applicable legal texts, and local links work outside this repository. Installation
+is project-scoped by default;
 these examples do not request global installation.
+
+## Task examples
+
+Run these prompts in the consuming application's agent session after installing
+the relevant skill. Adapt the feature, paths and target to that application;
+the skills are independent and do not require running every phase in sequence.
+
+### Specify security requirements
+
+Use `security-spec` before implementation to turn a feature into security
+requirements and observable acceptance criteria.
+
+```text
+Use $security-spec to define requirements and negative tests for private invoice
+downloads by ID. Invoices belong to one owner and organization. Cover the owner,
+another user, another organization and anonymous requests. Include expected
+denials and a successful owner download. Do not implement the endpoint yet.
+```
+
+### Model architectural threats
+
+Use `security-threat-model` for a planned design or a changed trust boundary.
+
+```text
+Use $security-threat-model on our planned partner-import webhook: it accepts a
+file and callback URL, queues processing, then updates organization-owned records.
+Map assets, trust boundaries and prioritized abuse paths. Ask about material
+missing deployment facts before finalizing the model.
+```
+
+### Implement or harden a feature
+
+Use `security-implementation` when code changes are authorized, with the feature
+or existing behavior to change stated explicitly.
+
+```text
+Use $security-implementation to add the private invoice-download endpoint in this
+repository's existing stack. Enforce owner and organization authorization, validate
+inputs, and add successful-owner and denied-access checks. Follow the approved
+security requirements and summarize the changes and validation.
+```
+
+For an existing feature, name the correction:
+
+```text
+Use $security-implementation to fix the confirmed missing ownership check in our
+invoice-download handler. Apply the authorization check across its download and
+preview paths, preserving legitimate owner access, and add regression coverage.
+```
+
+### Review a diff or selected source
+
+Use `security-review` for a bounded source review with proposed corrections.
+
+```text
+Use $security-review on this branch's diff against origin/main. Trace invoice
+authorization from routes to file storage, but report only vulnerabilities
+introduced or changed by this diff. Include file/line evidence and proposed
+patches; do not edit code.
+```
+
+For a focused existing-code review:
+
+```text
+Use $security-review on the invoice-download handler and its authorization/storage
+call path. Report confirmed boundary failures and exact verification gaps. Keep
+the reported scope to this feature and propose fixes without applying them.
+```
+
+### Audit the whole codebase
+
+Use `security-audit-coordinator` for a source-first audit across the repository.
+The `quick` profile runs a bounded wave and critic pass; `standard` assigns all
+planned coverage units; `deep` splits lifecycle modes and rechecks covered units.
+All profiles report deferred or unresolved coverage.
+
+```text
+Use $security-audit-coordinator for a standard whole-codebase audit of this
+repository at current HEAD. Record dirty-worktree state and cover application,
+dependency, secret, build and deployment-configuration surfaces. Write coverage,
+findings and REPORT.md to ../security-audit-report. Do not contact live targets
+or change source.
+```
+
+Select a different profile when needed:
+
+```text
+Use $security-audit-coordinator with the quick profile for a first-pass audit of
+this repository. Write artifacts to ../security-audit-quick and identify deferred
+coverage. Keep the run source-only and propose fixes without applying them.
+
+Use $security-audit-coordinator with the deep profile for a whole-codebase audit
+of this repository. Recheck covered units with independent verification where
+available, record its limitations, and write artifacts to ../security-audit-deep.
+Keep the run source-only and propose fixes without applying them.
+```
+
+### Pentest a running app and retest a fix
+
+Use `security-pentest` for authorized runtime testing. Supply test accounts through
+the agent environment's secret mechanism; never paste credentials into prompts.
+
+```text
+Use $security-pentest on my local app at http://127.0.0.1:3000 and its same-origin
+API. I own it and authorize this test. Use the two supplied ordinary test accounts
+in separate organizations. You may create and delete disposable invoices; exclude
+real-user data, external services and payments. Limit traffic to one request per
+second, concurrency one, 200 total requests and 20 minutes. Prioritize cross-account
+reads/downloads and report reproductions, coverage gaps and cleanup status.
+```
+
+Source access is optional; a deployed staging target can also be tested:
+
+```text
+Use $security-pentest on https://staging.example.test, which I own and authorize
+for testing. Only /app and /api on that origin are in scope. Source is unavailable;
+use the two supplied test accounts and disposable records. Exclude external
+services, email, payments and load testing. Limit requests to one per second,
+concurrency one and 100 total over 15 minutes. Report demonstrated vulnerabilities
+and coverage gaps, distinguishing HTTP evidence from browser verification.
+```
+
+Replace the illustrative staging hostname with the authorized target. To retest
+after a fix, refer to the earlier finding and reuse its agreed scope:
+
+```text
+Use $security-pentest to retest finding PENTEST-1 on the same authorized local app
+after the fix, within the existing accounts, scope and traffic limits. Check that
+the original cross-organization read is denied, a legitimate owner download still
+works, and related download/preview paths enforce the same rule. Report the retest
+result and remaining gaps; do not apply further fixes.
+```
+
+## Runtime pentesting
+
+`security-pentest` tests a running web app or API within the user's agreed scope.
+Local or staging environments with disposable data are preferred; source access
+is optional. Provide allowed origins, roles/accounts, permitted mutations and
+traffic limits. Existing authorization is reused rather than requested per test.
+
+The skill discovers usable HTTP, browser and scanner tools before selecting
+tests. It needs no particular scanner, MCP server or commercial tool. Missing
+tools or accounts become coverage gaps. Core checks cover authorization, account
+lifecycle, input handling, business rules and exposure; conditional references
+cover files, remote fetching, payments, concurrency, protocols, caches and AI.
+
+Reports distinguish runtime-confirmed findings, complete source evidence and
+unverified leads. Active tests use finite limits, controlled data and explicit
+stop/cleanup conditions. Source-only audit authorization does not authorize
+target traffic, and pentesting does not automatically authorize fixes or
+publication. The audit coordinator's source-only boundary is unchanged.
 
 ## References by surface
 
@@ -127,7 +286,7 @@ python3 -m unittest discover -s evals -p 'test_*.py'
 npx --yes skills@1.5.26 add . --list
 ```
 
-The read-only validator checks five entrypoints, frontmatter, names/descriptions,
+The read-only validator checks six entrypoints, frontmatter, names/descriptions,
 UI metadata, local links/anchors, references, unfinished markers, capitalization, entrypoint
 limits of 150 lines/1,800 words, and secret patterns in fixtures. It also limits
 each entrypoint to 12,000 bytes and rejects nested entrypoints and blank,
@@ -146,6 +305,10 @@ captures blind routing, domain cases and coordinator review. Fixtures are virtua
 credentials are inert markers. Review does not automatically apply patches, test
 real credentials or install vulnerable dependencies. Dependency audits require
 current tools/databases and record limitations when those are unavailable.
+The [pentest cases](evals/pentest_cases.json) exercise runtime-evidence reasoning,
+scope boundaries, tool failures and false-positive controls using simulated traces.
+The [pentest evaluation record](evals/pentest_results.md) captures independent
+responses, routing outcomes and packaging checks; no live app was tested.
 
 ## Licenses
 
@@ -156,4 +319,5 @@ changes and attribution to Sentry/OWASP, GitHub, OpenAI, Cloudflare, MCP and Web
 The new references preserve Cloudflare's MIT terms, MCP's CC-BY/MIT/Apache terms
 and the W3C Software and Document License; copies accompany each applicable skill.
 The original private-use intent does not change public redistribution obligations.
+The pentest skill is original Apache-2.0 material with its own bundled provenance.
 Vercel and deployment tools are not required to use these skills.

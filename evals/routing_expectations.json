@@ -8,5 +8,10 @@
   "R07": "security-review",
   "R08": "security-audit-coordinator",
   "R09": null,
-  "R10": null
+  "R10": null,
+  "R11": "security-pentest",
+  "R12": "security-audit-coordinator",
+  "R13": "security-review",
+  "R14": "security-pentest",
+  "R15": null
 }

@@ -1,9 +1,10 @@
 # Maintaining security-lifecycle
 
-Keep four independent lifecycle skills plus one independently installable audit
-coordinator under `skills/`. Their consumer chooses the phase. The coordinator
-applies only to explicit whole-codebase audits; do not turn it into a dispatcher
-for Specify, Design, Implement or focused Review work.
+Keep four independent lifecycle skills, one independently installable audit
+coordinator and one runtime pentest skill under `skills/`. Their consumer chooses
+the workflow. The coordinator applies only to explicit whole-codebase audits;
+do not turn it into a dispatcher for Specify, Design, Implement, focused Review
+or runtime pentesting. Pentesting requires its own authorized target scope.
 Write repository documentation, skill metadata, prompts and fixture prose in English.
 
 Before adapting upstream material, pin its commit and check the applicable local

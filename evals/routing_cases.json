@@ -38,5 +38,25 @@
   {
     "id": "R10",
     "prompt": "Fix the typo in the README title."
+  },
+  {
+    "id": "R11",
+    "prompt": "Pentest our authorized staging web app and API using the two supplied test accounts. Verify any vulnerabilities with bounded runtime tests."
+  },
+  {
+    "id": "R12",
+    "prompt": "Run a source-only security audit of this entire repository. Do not contact a running app."
+  },
+  {
+    "id": "R13",
+    "prompt": "Review only the authorization changes in this diff and propose corrections without executing endpoint probes."
+  },
+  {
+    "id": "R14",
+    "prompt": "Retest the reported tenant-data leak against our authorized local app with the supplied accounts; do not apply fixes."
+  },
+  {
+    "id": "R15",
+    "prompt": "Open the local app in a browser and check whether the navigation menu works."
   }
 ]
