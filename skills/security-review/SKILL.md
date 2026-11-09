@@ -22,8 +22,9 @@ whole-codebase, comprehensive-codebase or pre-release codebase audit belongs to
 `security-audit-coordinator`. If scope cannot be inferred, ask before broadening.
 
 Read [evidence and confidence](references/evidence-and-confidence.md) before
-evaluating candidates; read [report format](references/report-format.md) when
-assembling the result. Load concept references only for observed surfaces.
+evaluating candidates, including how a repository security policy file such as
+`SECURITY_MODEL.md` is used as evidence; read [report format](references/report-format.md)
+when assembling the result. Load concept references only for observed surfaces.
 Identify the actual stack/version as evidence, not as a reference taxonomy.
 When a security conclusion depends on a framework/database/runtime default,
 consult the consumer's preferred documentation tool and current official docs
