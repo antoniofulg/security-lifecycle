@@ -23,6 +23,8 @@ Constrain service-worker registration/scope and partition its caches by identity
 Validate WebSocket origin where browser credentials authenticate the connection.
 Avoid merging attacker-controlled keys into security-sensitive objects; use objects
 without prototypes or explicit key allowlists when prototype pollution is possible.
+Read globals and element lookups explicitly so attacker markup with `id`/`name`
+cannot clobber them.
 Bind navigation, opener and frame-sensitive actions to the expected origin and apply
 server-enforced frame policy where UI redress would authorize a consequential act.
 

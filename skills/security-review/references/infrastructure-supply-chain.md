@@ -29,7 +29,9 @@ Trace dependency sources, generated inputs, caches/workspaces and build outputs 
 the exact promoted artifact. Check build/promotion identity separation, signing and
 attestation binding, mutable release inputs, update metadata, rollback protection,
 and plugin/extension authority. A missing signature is hardening unless an attacker
-can substitute an artifact across an evidenced trust boundary.
+can substitute an artifact across an evidenced trust boundary. A hash manifest
+stored beside the files it covers is not integrity evidence unless it is verified
+from a separately trusted, signed source.
 
 For IaC/cloud, map public ingress/storage, identity grants, state access and secret
 outputs to deployable resources. Wildcards require policy and reachability context.

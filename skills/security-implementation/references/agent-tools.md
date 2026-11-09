@@ -43,7 +43,8 @@ Validate redirects and state according to the actual OAuth flow; do not treat
 ambient upstream sessions as client consent in that proxy scenario.
 
 On network transports, implement applicable Origin/exposure protections and
-constrain discovery/redirect destinations against SSRF. For locally launched
+constrain discovery/redirect destinations against SSRF. A loopback binding behind
+a published container port or proxy is a network transport; apply the same rules. For locally launched
 stdio, instead scope executable provenance, environment credentials, filesystem
 and network authority. Do not add HTTP OAuth to a pipe-only server by analogy.
 
@@ -62,11 +63,16 @@ does not grant task consent. Avoid accepting identity/tenant/approval booleans
 from caller arguments as authority. Bind any approval proof to the current actor
 and exact operation, with expiry/replay handling appropriate to the action.
 
-Limit exposed tools/origins and minimize requested personal data. Preserve
-separation of cross-site and private-browsing context in the consumer. Check
-current official specification and actual browser support before choosing API
-names, permission controls or lifecycle behavior. Do not invent a universal
-browser confirmation gate; the source's security mitigations are non-normative.
+Keep tools same-origin unless a cross-origin caller is required; then list only
+that origin in `exposedTo`, name it in the consumer's `fromOrigins` and delegate
+`allow="tools"` on the frame. Send `Permissions-Policy: tools=()` from documents
+that must not expose tools. Still validate caller arguments and treat cross-origin
+results as untrusted. Minimize requested personal data and preserve cross-site and
+private-browsing separation in the consumer. Set read-only, consequential and
+untrusted-content annotations to match real side effects, knowing consumers may
+not enforce them. Check the current specification and actual browser support
+before choosing API names or lifecycle behavior; do not build on the removed
+declarative form or assume a universal browser confirmation gate.
 
 Test negative and valid delegated calls, alternate UI/tool paths, changed approval
 arguments and failed/replayed operations. Report implementation/hardening outcomes,

@@ -63,10 +63,15 @@ page login or a hidden button is not authority to perform every exposed action.
 Specify minimum parameters so the agent cannot silently disclose other-site or
 private-session information requested by a malicious tool schema.
 
-State the intended origin exposure and approval policy. Verify actual browser
-support before relying on permissions, registrations or document lifecycle.
-Treat annotations and prospective confirmation APIs as hints/proposals unless
-enforcement is evidenced. The upstream security discussion is non-normative.
+State the intended origin exposure: same-origin only, or the exact embedder
+delegation (`allow="tools"`), provider `exposedTo` and consumer `fromOrigins`
+lists. Require `Permissions-Policy: tools=()` on documents that must not expose
+tools. Cross-origin opt-in does not make caller arguments or returned data trusted.
+Verify actual browser support before relying on permissions, registrations or
+document lifecycle. Treat read-only, consequential and untrusted-content
+annotations and agent confirmation behavior as hints unless enforcement is
+evidenced; the specification leaves agent guardrails to the consumer. Do not
+specify the removed declarative form.
 
 ## Negative-test seeds
 

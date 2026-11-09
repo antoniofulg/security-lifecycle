@@ -21,6 +21,20 @@ paragraph when there is no implementation. Do not manufacture code evidence.
 Mark a draft as provisional when a material user answer is pending.
 Trace each discovered boundary to a threat or a documented reason for exclusion.
 
+## Updating a prior model
+
+When the user supplies a prior model and a baseline revision, pin baseline and
+target. Keep every prior THREAT ID; continue numbering for new threats and never
+reuse a retired ID. Reclassify each prior threat against current evidence as
+present, mitigated (cite the change), partially mitigated, removed with its
+component, or new. Verify a threat found in unchanged code against the baseline
+revision before calling it pre-existing. Regenerate carried-forward entries from
+current paths rather than copying prose. The status column always takes the new
+classification. Where current evidence contradicts a prior priority, keep the
+prior priority in the table and list the disagreement, with the proposed value,
+under unresolved questions. Summarize counts by status and state the
+direction of change with its reason.
+
 A diagram should clarify the actual system; for an archive webhook the useful
 edges might be external sender → ingress → queue → parser → storage and worker
 → remote URL, provided those components are evidenced. Do not introduce a queue

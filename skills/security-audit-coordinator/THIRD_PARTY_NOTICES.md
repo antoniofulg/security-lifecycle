@@ -21,5 +21,16 @@ dependency on another installed skill; consolidated attack classes into five
 conditional concept references; kept source changes outside audit authorization.
 No source implementation, schema or prompt block was copied verbatim.
 
+The seeded secret-discovery unit's serialization clause is informed by
+[Sentry secret-serialization](https://github.com/getsentry/skills/tree/473d2594cd91c96ac8348f297e016b631e842487/skills/secret-serialization),
+commit `473d2594cd91c96ac8348f297e016b631e842487`, checked 2026-11-09. Copyright Functional
+Software, Inc. dba Sentry; Apache-2.0, the same terms as this skill's [LICENSE](LICENSE).
+Concept only; no text was copied.
+
+The policy-file inventory rule is informed by
+[Sentry security-model](https://github.com/getsentry/skills/tree/2960faf806231e253302a410b9e97e7682aa8b64/skills/security-model),
+commit `2960faf806231e253302a410b9e97e7682aa8b64`, checked 2026-11-09, Apache-2.0 (upstream adapts
+openai/codex-security `define-security-policy`, Apache-2.0). Concept only.
+
 Preserve this attribution and the bundled MIT text when redistributing the skill.
 Cloudflare does not endorse this project.
