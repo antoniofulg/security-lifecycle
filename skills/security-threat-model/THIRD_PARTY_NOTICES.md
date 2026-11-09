@@ -15,6 +15,20 @@ entrypoint and two references.
 Instructions and examples are original rewrites, not verbatim upstream copies.
 Preserve this attribution and the bundled license when redistributing the skill.
 
+## Update tracking and policy evidence
+
+The "Updating a prior model" contract is an original synthesis informed by
+[Awesome Copilot threat-model-analyst](https://github.com/github/awesome-copilot/tree/421418928715158da3610571cb9e9cbb18d4747d/skills/threat-model-analyst),
+commit `421418928715158da3610571cb9e9cbb18d4747d`, checked 2026-11-09. Copyright GitHub, Inc.; MIT,
+[full permission and disclaimer](licenses/GitHub-MIT.txt). Reused concepts: stable
+IDs, status reclassification, baseline verification and recorded disagreements.
+No template, quota, checklist or script was adopted.
+
+The step reading a repository security policy as evidence is informed by
+[Sentry security-model](https://github.com/getsentry/skills/tree/2960faf806231e253302a410b9e97e7682aa8b64/skills/security-model),
+commit `2960faf806231e253302a410b9e97e7682aa8b64`, checked 2026-11-09, Apache-2.0, the same terms as
+this skill's [LICENSE](LICENSE). Concept only; no text was copied.
+
 ## Extended security surfaces
 
 The identity/client, distributed-data, platform-integrity and general AI additions
@@ -27,17 +41,19 @@ boundaries, abuse paths and conditional controls; no source prompt was copied.
 
 ## Agent and tool sources
 
-Modified original synthesis, checked 2026-09-12:
+Modified original synthesis, checked 2026-11-09:
 
-- [MCP security best practices, 2026-07-28](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/aa8ce049f089f92618340190d4ece141f663310d/docs/docs/2026-07-28/tutorials/security/security_best_practices.mdx),
-  SHA `aa8ce049f089f92618340190d4ece141f663310d`, with related authorization,
-  transport and tools specification sections. Copyright (c) 2024-2025 Model
+- [MCP security best practices, 2026-07-28](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/394567887feccae8b3e27c7c84106edb5fbac116/docs/docs/2026-07-28/tutorials/security/security_best_practices.mdx),
+  SHA `394567887feccae8b3e27c7c84106edb5fbac116`, with related authorization,
+  transport and tools specification sections and the local server security
+  tutorial added upstream in 2026-10. Copyright (c) 2024-2025 Model
   Context Protocol a Series of LF Projects, LLC. Documentation: CC-BY-4.0;
   specification contributions: Apache-2.0 or retained MIT as described by the
   [full source licensing notice](licenses/MCP-LICENSE.txt).
-- [WebMCP security questionnaire](https://github.com/webmachinelearning/webmcp/blob/97da8f515427594c856307e3476c0a0db9698fbb/security-privacy-questionnaire.md)
+- [WebMCP security questionnaire](https://github.com/webmachinelearning/webmcp/blob/6cd745ac8a186122bd3f4aeaeb1d6cfa820251d2/security-privacy-questionnaire.md)
   and index.bs security/privacy discussion, SHA
-  `97da8f515427594c856307e3476c0a0db9698fbb`.
+  `6cd745ac8a186122bd3f4aeaeb1d6cfa820251d2`, including the same-origin
+  isolation, two-sided cross-origin opt-in and Permissions Policy sections.
   [Source declaration](licenses/WebMCP-LICENSE.txt);
   [W3C Software and Document License, full terms](licenses/W3C-SOFTWARE-DOCUMENT.txt).
 

@@ -25,6 +25,20 @@ Check who can read them and existing redaction. Safe error messages should retai
 operational diagnostics in access-controlled logs without credentials or personal
 data. Confirm actual output exposure rather than inferring it from debug syntax.
 
+Credentials also leak when a type serializes itself and something else serializes
+whole objects. When a credential-bearing field lands on a type with generated
+repr, dict/dump export or enumerable properties, list each generated path and
+check which ones the field's mechanism blocks; one flag usually covers one path,
+so verify the installed library in current docs. Raw attribute access such as
+`vars`, `__dict__`, pickling or `default=vars` bypasses every field-level
+mechanism, and compile-time visibility blocks nothing. Search the whole
+repository, not only the diff, for the other half: sinks that stringify objects
+or every argument into logs, spans, error context, caches, queues or responses,
+or the holder when the diff adds such a sink. A traced holder-to-sink path is
+confirmed; an unmatched half is Needs verification with the search that would
+close it. Do not report fully excluded fields without a raw-attribute sink,
+sinks that allowlist scalar keys or emit type names, or fixture values.
+
 Assess TLS, secure cookies, proxy trust and HSTS using deployment evidence.
 Local HTTP or upstream TLS termination is not automatically a vulnerability.
 Configuration recommendations stay hardening unless a concrete harmful path exists.

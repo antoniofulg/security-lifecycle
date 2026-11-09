@@ -20,7 +20,9 @@ snapshot. For virtual files embedded in JSON, decode the file and count its own
 lines; JSON container lines and remembered offsets are not source locations.
 
 Then include **Needs verification**, **Hardening recommendations**, and
-**Coverage and limitations**. For each gap state the omitted check and consequence.
+**Coverage and limitations**. When a repository security policy suppressed a
+finding, list it under **Excluded by repository policy** with the finding, policy
+file and matching exclusion, so suppression leaves a trail. For each gap state the omitted check and consequence.
 Report inspected paths/surfaces, tools and versions/date, failed/unavailable checks,
 runtime versus build/test coverage, network restrictions and exclusions.
 

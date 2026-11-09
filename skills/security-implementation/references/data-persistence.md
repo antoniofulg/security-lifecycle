@@ -21,6 +21,15 @@ access-controlled diagnostics. Minimize retention and encrypt where the project'
 data classification requires it. Select cryptographic primitives by their purpose,
 using established APIs, not a generic prohibition on checksum algorithms.
 
+Keep credentials off auto-serializing types, or wrap them in a redacting type
+that covers every generated path; one field flag rarely blocks repr, dump and
+enumeration together, so confirm coverage for the installed library. Logging,
+telemetry and error-context helpers that stringify objects or every argument
+should allowlist scalar keys, redact credential-named keys and record a type
+name for the rest. Regression tests serialize an instance with the sink's own
+serializer and assert the secret is absent; a repr check alone misses dict and
+raw-attribute paths.
+
 Test literal query input, cross-tenant access, sensitive-field exclusion, rollback
 and concurrent duplicate operations where relevant. A successful query alone does
 not demonstrate the security contract.

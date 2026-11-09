@@ -43,7 +43,10 @@ Distinguish local stdio from HTTP: lack of OAuth on a pipe-only local process is
 not a vulnerability. Assess launch/input provenance, inherited credentials and
 OS privileges instead. For exposed HTTP, inspect applicable Origin protections,
 binding address and current transport requirements; untrusted discovery/redirect
-URLs need an evidenced SSRF path before reporting.
+URLs need an evidenced SSRF path before reporting. A loopback or unspecified
+binding is network-exposed when a container port mapping, ingress or proxy
+evidently fronts it; when transport cannot be established from source, record
+Needs verification instead of assuming local stdio.
 
 Provider policy and consumer dispatch policy are separate responsibilities.
 Check whether tool updates, resource results or cross-tool data can expand the
@@ -55,16 +58,22 @@ refusing automatic network schema resolution is valid counterevidence.
 ## WebMCP branch
 
 Trace invocation through page callback and authenticated backend to its effect.
-Verify origin/frame exposure and actual browser/version support; do not equate
-origin permission with user intent or object authorization. Assess over-requested
-personal data only when the consumer can supply it to an unauthorized destination.
+Tools are same-origin by default; a cross-origin caller needs the embedder's
+`allow="tools"` delegation, the provider's `exposedTo` list and the consumer's
+`fromOrigins` list. Report cross-origin exposure only when the registration
+actually admits the attacking origin or the callback treats caller arguments as
+authority. A missing `Permissions-Policy: tools=()` header is hardening, not a
+finding. Do not equate origin permission with user intent or object authorization.
+Assess over-requested personal data only when the consumer can supply it to an
+unauthorized destination.
 
 For sensitive actions, inspect policy-enforced approval, actor/argument binding,
-expiry and replay behavior. Compare provider hints with actual side effects but
-seek real counterevidence before treating a misleading hint as exploitable.
-Do not report absent proposed APIs as vulnerabilities. The official questionnaire
-and security discussion include non-normative or unfinished safeguards; record
-those as version/context limits, not universal browser guarantees.
+expiry and replay behavior. Compare read-only, consequential and untrusted-content
+hints with actual side effects, but seek real counterevidence before treating a
+misleading hint as exploitable. Do not report absent proposed APIs or the removed
+declarative form as vulnerabilities. Origin gates and Permissions Policy are
+specified behavior; confirmation prompts and agent guardrails remain the
+consumer's responsibility. Record browser/version support as a context limit.
 
 In the report, identify role, transport/browser evidence, attacker input, sink,
 impact and violated policy. Keep protocol conformance deviations without confirmed

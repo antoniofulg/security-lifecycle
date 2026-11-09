@@ -43,17 +43,17 @@ npx skills add antoniofulg/security-lifecycle --skill security-pentest
 ```
 
 These commands use the repository's default branch. For a reproducible installation,
-pin the [v0.3.0 release](https://github.com/antoniofulg/security-lifecycle/releases/tag/v0.3.0):
+pin the [v0.4.0 release](https://github.com/antoniofulg/security-lifecycle/releases/tag/v0.4.0):
 
 ```sh
-# Install all six skills from v0.3.0
-npx skills add https://github.com/antoniofulg/security-lifecycle/tree/v0.3.0 --skill '*'
+# Install all six skills from v0.4.0
+npx skills add https://github.com/antoniofulg/security-lifecycle/tree/v0.4.0 --skill '*'
 
 # Install only the whole-codebase audit coordinator
-npx skills add https://github.com/antoniofulg/security-lifecycle/tree/v0.3.0 --skill security-audit-coordinator
+npx skills add https://github.com/antoniofulg/security-lifecycle/tree/v0.4.0 --skill security-audit-coordinator
 
 # Install only the runtime pentest skill
-npx skills add https://github.com/antoniofulg/security-lifecycle/tree/v0.3.0 --skill security-pentest
+npx skills add https://github.com/antoniofulg/security-lifecycle/tree/v0.4.0 --skill security-pentest
 ```
 
 To use a local checkout from another project, pass its absolute path as the
@@ -263,10 +263,13 @@ license checks and retained notices.
 
 | Source skill | Contribution to this collection |
 | --- | --- |
-| [Sentry — security-review](https://github.com/getsentry/skills/tree/c2f99a5b04b4cd992ec3022d7c2c3e23e938d241/skills/security-review) | Evidence, exploitability, confidence, framework protections and false-positive handling in `security-review`; includes its OWASP-derived reference material |
+| [Sentry — security-review](https://github.com/getsentry/skills/tree/e94f22214528d69899d09c627b3315ddc3544816/skills/security-review) | Evidence, exploitability, confidence, framework protections and false-positive handling in `security-review`; includes its OWASP-derived reference material |
 | [GitHub Awesome Copilot — security-review](https://github.com/github/awesome-copilot/tree/7568a482ce2df38f8965ab5336a3220db796a4ba/skills/security-review) | Review sequence, dependency/secret checks, cross-file analysis, finding structure and proposed patches in `security-review` |
 | [OpenAI — security-best-practices](https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-best-practices) | Stack-aware secure defaults, implementation hardening, documented exceptions and regression checks in `security-implementation` |
 | [OpenAI — security-threat-model](https://github.com/openai/skills/tree/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/security-threat-model) | Repository evidence, assets, trust boundaries, abuse paths, prioritization and material-assumption checks in `security-threat-model` |
+| [Sentry — secret-serialization](https://github.com/getsentry/skills/tree/473d2594cd91c96ac8348f297e016b631e842487/skills/secret-serialization) | Credential holder plus wholesale serialization sink model in `security-review`, `security-implementation` and `security-audit-coordinator` |
+| [Sentry — security-model](https://github.com/getsentry/skills/tree/2960faf806231e253302a410b9e97e7682aa8b64/skills/security-model) | Consuming a repository `SECURITY_MODEL.md` as untrusted scope evidence in `security-review`, `security-audit-coordinator` and `security-threat-model` |
+| [GitHub Awesome Copilot — threat-model-analyst](https://github.com/github/awesome-copilot/tree/421418928715158da3610571cb9e9cbb18d4747d/skills/threat-model-analyst) | Prior-model update contract (stable IDs, status reclassification, recorded disagreements) in `security-threat-model` |
 | [Cloudflare — security-audit](https://github.com/cloudflare/security-audit-skill/tree/c1c8a8c1471069fb0e188eeaff69b8e8db6564a8/skills/security-audit) | Broader security-domain coverage in specification, modeling, implementation and review; coverage ledgers, bounded hunting and independent verification in `security-audit-coordinator` |
 
 The review skill's [OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/)
@@ -306,8 +309,8 @@ path are not automatically confirmed vulnerabilities.
   UI/tool/backend paths, excessive data requests and sensitive actions. It checks
   the browser/version rather than assuming proposed APIs or hints enforce consent.
 
-Sources: [MCP security](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/aa8ce049f089f92618340190d4ece141f663310d/docs/docs/2026-07-28/tutorials/security/security_best_practices.mdx)
-and [WebMCP security/privacy](https://github.com/webmachinelearning/webmcp/blob/97da8f515427594c856307e3476c0a0db9698fbb/security-privacy-questionnaire.md),
+Sources: [MCP security](https://github.com/modelcontextprotocol/modelcontextprotocol/blob/394567887feccae8b3e27c7c84106edb5fbac116/docs/docs/2026-07-28/tutorials/security/security_best_practices.mdx)
+and [WebMCP security/privacy](https://github.com/webmachinelearning/webmcp/blob/6cd745ac8a186122bd3f4aeaeb1d6cfa820251d2/security-privacy-questionnaire.md),
 with recorded SHAs and licenses. Consult current documentation for the consumer's
 actual version; conceptual coverage is not protocol or browser certification.
 

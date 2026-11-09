@@ -17,6 +17,8 @@ and credentialed cross-origin requests; CORS is not authorization.
 Constrain service-worker registration and scope; partition its caches by identity.
 Validate WebSocket origin where browser credentials authenticate the connection.
 For attacker-controlled object keys, trace a reachable prototype-pollution gadget.
+For DOM clobbering, confirm attacker markup with `id`/`name` shadows a global or
+property the script actually reads before a sensitive decision.
 Bind navigation and opener actions to the expected origin. Check server-enforced
 frame policy where UI redress would authorize a consequential act. A missing frame
 header or broad listener without an affected boundary remains hardening.

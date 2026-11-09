@@ -54,10 +54,14 @@ look for policy checks skipped by the tool. Model misleading intent/read-only
 annotations, unneeded personal-data parameters and stale permissions after
 identity, document or operation changes.
 
-Origin/permission-policy mechanisms restrict exposure where actually supported;
-they do not establish business authorization. Record browser/version and concrete
-controls. The source's security/privacy discussion and proposed safeguards are
-not proof of deployed confirmation or isolation guarantees.
+Exposure is same-origin unless embedder delegation (`allow="tools"`), provider
+`exposedTo` and consumer `fromOrigins` all admit the cross-origin caller;
+`Permissions-Policy: tools=()` removes the API from a document tree. Model each
+gate's owner, a compromised embedded frame polluting the tool list, same-named
+tools across origins and agent-carried state crossing origins. These gates do not
+establish business authorization. Record browser/version and concrete controls;
+confirmation prompts and agent guardrails are consumer responsibilities the
+specification does not enforce.
 
 ## Check-in and output
 

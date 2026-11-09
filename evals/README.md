@@ -60,9 +60,10 @@ cases, fix only demonstrated defects and rerun the affected case.
 
 ## Extended-domain cases
 
-[domain_cases.json](domain_cases.json) adds five phase-specific cases for message
-delivery, data lifecycle, account recovery/linking, privileged local IPC and the
-whole-codebase audit coordinator. Keep [domain_expectations.json](domain_expectations.json)
+[domain_cases.json](domain_cases.json) adds seven phase-specific cases for message
+delivery, data lifecycle, account recovery/linking, privileged local IPC, the
+whole-codebase audit coordinator, a threat-model update against a prior model
+and a review where the diff edits the repository security policy. Keep [domain_expectations.json](domain_expectations.json)
 hidden from evaluators. The audit case is a virtual quick/source-only run: return
 coverage/finding records without writing into this repository or executing fixtures.
 Compare actual output to the separate oracle and record reference selection,
